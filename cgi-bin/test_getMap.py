@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import cgi
+#import cgi
 import json
 import requests
 import numpy as np
@@ -12,9 +12,9 @@ import sys
 from datetime import datetime
 from io import BytesIO
 import sys, os
-import cgi, cgitb
+#import cgi, cgitb
 import io
-
+"""
 form = cgi.FieldStorage() 
 region = form.getvalue('region')
 layer_map = form.getvalue('layer_map')
@@ -27,17 +27,18 @@ legend_steps = 6
 coral = False
 if outlook == "True":
     coral = True
-
 """
+
+
 ##INPUT PARAMS###
 region = 1
-time = "2025-01-01T00:00:00Z"
-layer_map = 17
+time = "2025-05-16T12:00:00Z"
+layer_map = 6
 legend_steps = 6
 units = "null"
 resolution = "l"
 coral = False
-"""
+
 def add_z_if_needed(s):
     if len(s) == 0:
         return 'Z'  # or just return s if you want empty string to remain empty
@@ -397,9 +398,10 @@ else:
     ax_logo = fig.add_axes([0.07, ax2_pos.y1 - 0.001, 0.13, 0.15])  # Adjust the y-position slightly above ax2
     ax_logo.imshow(logo)
     ax_logo.axis('off')  
-
+    plt.show()
+    """
     plt.savefig(output_filename, dpi=300,bbox_inches='tight', pad_inches=0.1) 
-
+    
     length = os.stat(output_filename).st_size
 
     sys.stdout.write("Content-Type: image/png\n")
@@ -407,7 +409,7 @@ else:
     sys.stdout.write("\n")
     sys.stdout.flush()
     sys.stdout.buffer.write(open(output_filename, "rb").read())
-
+    """
 
     """
     print("Content-Type: text/html; charset=UTF-8")

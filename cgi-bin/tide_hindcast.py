@@ -42,7 +42,7 @@ def download_txt_file(url, filename):
         # Save the content to a file
         with open(filename, 'w', encoding='utf-8') as file:
             file.write(response.text)
-        print(f"File downloaded successfully as '{filename}'")
+        #print(f"File downloaded successfully as '{filename}'")
     except requests.exceptions.RequestException as e:
         print(f"Error downloading the file: {e}")
 
@@ -84,15 +84,15 @@ def read_sea_level_data(filename):
     return pd.DataFrame(data)
 #main
 url = "http://reg.bom.gov.au/ntc/%s/%sSLD.txt"% (station_id,station_id)
-print(url)
+#print(url)
 filename = "%sSLD.txt" % (station_id)
 
 #DOWNLOAD THE FILE
-#download_txt_file(url, filename)
+download_txt_file(url, filename)
 
 #READ THE DATA
-df = read_sea_level_data(filename)
-
+df = read_sea_level_data("/usr/lib/cgi-bin/"+filename)
+#print('Anuj')
 # Ensure 'Date' column is created correctly
 df["Date"] = pd.to_datetime(df.assign(Day=1)[["Year", "Month", "Day"]])
 
@@ -101,7 +101,7 @@ x = np.arange(len(df))
 slope_mean, intercept_mean, _, _, _ = linregress(x, df["Mean"])
 
 # Convert slope from mm/month to mm/year
-slope_mean_per_year = slope_mean * 12
+slope_mean_per_year = slope_mean * 12 * 1000
 
 df["Mean_Trend"] = intercept_mean + slope_mean * x
 
@@ -125,7 +125,7 @@ ax.set_ylim([min(df["Minimum"].min(), df["Mean_Trend"].min()) * 0.98,
 
 # Formatting using ax
 ax.set_xlabel("Year")
-ax.set_ylabel("Sea Level (mm)")
+ax.set_ylabel("Sea Level (m)")
 ax.legend()
 ax.set_title("Monthly Sea Level (Mean, Max, Min) with Mean Trend \n %s - %s" % (country_name, location))
 ax.grid(True)

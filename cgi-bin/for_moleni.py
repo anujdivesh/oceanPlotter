@@ -4,11 +4,13 @@ import json
 import numpy as np
 import requests
 import pandas as pd
-
+from scipy.stats import linregress
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
 #inputs
 country_name = "Fiji"
 location = "Suva"
-station_id	= "IDO70063"
+station_id	= "IDO70054"
 #end inputs
 
 #Functions
@@ -61,15 +63,45 @@ def read_sea_level_data(filename):
                     data.append(record)
     
     return pd.DataFrame(data)
-#main
-url = "http://reg.bom.gov.au/ntc/%s/%sSLD.txt"% (station_id,station_id)
-print(url)
-filename = "%sSLD.txt" % (station_id)
 
-#DOWNLOAD THE FILE
+
+# Main
+url = f"http://reg.bom.gov.au/ntc/{station_id}/{station_id}SLD.txt"
+filename = f"{station_id}SLD.txt"
+
+# Download and read data
 download_txt_file(url, filename)
+df = read_sea_level_data(filename)
 
-#READ THE DATA
-data = read_sea_level_data(filename)
+# Ensure 'Date' column is created correctly
+df["Date"] = pd.to_datetime(df.assign(Day=1)[["Year", "Month", "Day"]])
 
-print(data)
+# Compute trend line for the "Mean" values
+x = np.arange(len(df))
+slope_mean, intercept_mean, _, _, _ = linregress(x, df["Mean"])
+
+# Convert slope from mm/month to mm/year
+slope_mean_per_year = slope_mean * 12 * 1000
+
+df["Mean_Trend"] = intercept_mean + slope_mean * x
+
+# Plot the data
+plt.figure(figsize=(12, 6))
+plt.plot(df["Date"], df["Mean"], label="Mean", color="blue")
+plt.plot(df["Date"], df["Maximum"], label="Maximum", color="red", alpha=0.5)
+plt.plot(df["Date"], df["Minimum"], label="Minimum", color="green", alpha=0.5)
+plt.plot(df["Date"], df["Mean_Trend"], "--", color="blue", label="Mean Trend")
+
+# Display the gradient (slope) in mm/year on the plot
+plt.text(df["Date"].iloc[5], max(df["Mean"]), 
+         f"Mean Trend Slope: {slope_mean_per_year:.2f} mm/year", 
+         fontsize=12, color="blue", bbox=dict(facecolor="white", alpha=0.6))
+
+# Formatting
+plt.xlabel("Year")
+plt.ylabel("Sea Level (m)")
+plt.legend()
+plt.title("Monthly Sea Level (Mean, Max, Min) with Mean Trend")
+plt.grid()
+
+plt.show()
