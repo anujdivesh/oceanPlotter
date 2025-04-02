@@ -80,7 +80,7 @@ else:
             # If request fails, return a message
             return {'error': f"Failed to fetch data. Status code: {response.status_code}"}
 
-    layer_web_map_url = "https://dev-oceanportal.spc.int/middleware/api/layer_web_map/%s/" % (layer_map)
+    layer_web_map_url = "https://ocean-middleware.spc.int/middleware/api/layer_web_map/%s/" % (layer_map)
     layer_data = fetch_wms_layer_data(layer_web_map_url)
     # Input
     ini_url = layer_data['wms_url']
