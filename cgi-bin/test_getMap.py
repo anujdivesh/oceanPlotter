@@ -32,12 +32,12 @@ if outlook == "True":
 
 ##INPUT PARAMS###
 region = 1
-time = "2025-05-16T12:00:00Z"
-layer_map = 6
+time = "2025-04-21T00:00:00Z"
+layer_map = 19
 legend_steps = 6
 units = "null"
 resolution = "l"
-coral = False
+coral = True
 
 def add_z_if_needed(s):
     if len(s) == 0:
@@ -71,6 +71,8 @@ def fetch_wms_layer_data(api_url):
         interval_step = data.get('interval_step')
         logscale = data.get('logscale')
         get_map_names = data.get('get_map_names')
+        specific_timestemps = data.get('specific_timestemps')
+        interval_step = data.get('interval_step')
         
         # Return all extracted values
         return {
@@ -86,7 +88,9 @@ def fetch_wms_layer_data(api_url):
             'period': period,
             'interval_step': interval_step,
             'logscale': logscale,
-            'get_map_names':get_map_names
+            'get_map_names':get_map_names,
+            'specific_timestemps':specific_timestemps,
+            'interval_step':interval_step
         }
     else:
         # If request fails, return a message
@@ -116,15 +120,31 @@ formatted_date = date.strftime("%-d %B %Y")
 formatted_date2 = date.strftime("%Y%m%d")
 get_map_names = layer_data['get_map_names']
 
+##NEW
+new_name = ""
+week = False
+if "{week}" in get_map_names:
+    spec = layer_data['specific_timestemps']
+    interval = layer_data['interval_step']
+    intsplot = interval.split(',')
+    cleaned_text = time.replace("Z", "")
+    index = spec.index(cleaned_text)
+    new_name = get_map_names.replace("{week}", "%s Week"%(intsplot[index]))
+    week = True
+
+
 title_suffix = "Daily Average Sea Surface Temperature Anomaly: %s" % (formatted_date)
 dataset_text = "Reynolds SST"
 
 if get_map_names != None or get_map_names != "":
     get_map_names = layer_data['get_map_names'].split('/')
     formatted_date = date.strftime(get_map_names[1])
-    title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
+    if week:
+        title_suffix = "%s: %s" % (new_name,formatted_date)
+    else:
+        title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
     dataset_text = get_map_names[2]
-
+##END NEW
 logo_url = "./Logo_cropped.png" 
 
 

@@ -115,14 +115,31 @@ formatted_date = date.strftime("%-d %B %Y")
 formatted_date2 = date.strftime("%Y%m%d")
 get_map_names = layer_data['get_map_names']
 
+##NEW
+new_name = ""
+week = False
+if "{week}" in get_map_names:
+    spec = layer_data['specific_timestemps']
+    interval = layer_data['interval_step']
+    intsplot = interval.split(',')
+    cleaned_text = time.replace("Z", "")
+    index = spec.index(cleaned_text)
+    new_name = get_map_names.replace("{week}", "%s Week"%(intsplot[index]))
+    week = True
+
+
 title_suffix = "Daily Average Sea Surface Temperature Anomaly: %s" % (formatted_date)
 dataset_text = "Reynolds SST"
 
 if get_map_names != None or get_map_names != "":
     get_map_names = layer_data['get_map_names'].split('/')
     formatted_date = date.strftime(get_map_names[1])
-    title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
+    if week:
+        title_suffix = "%s: %s" % (new_name,formatted_date)
+    else:
+        title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
     dataset_text = get_map_names[2]
+##END NEW
 
 logo_url = "./Logo_cropped.png" 
 
