@@ -288,7 +288,7 @@ def getEEZ(ax):
                     x = np.where(x < 0, x + 360, x)  # For longitudes < 0 (e.g., -170°), shift to +180°
                     
                     # Plot the boundary line
-                    ax.plot(x, y, marker=None, color='pink', linewidth=0.5,linestyle='--')  # Plot the boundary line
+                    ax.plot(x, y, marker=None, color='#FF69B4', linewidth=0.5,linestyle='--')  # Plot the boundary line
 
     else:
         print("Failed to retrieve the GeoJSON data.")
