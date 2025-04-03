@@ -147,7 +147,7 @@ if get_map_names != None or get_map_names != "":
     else:
         title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
     dataset_text = get_map_names[2]
-##END NEW
+##END NEWWW
 
 logo_url = "./Logo_cropped.png" 
 
