@@ -32,12 +32,12 @@ if outlook == "True":
 
 ##INPUT PARAMS###
 region = 1
-time = "2025-05-19T00:00:00Z"
-layer_map = 19
+time = "2024-09-01T00:00:00Z"
+layer_map = 31
 legend_steps = 6
 units = "null"
 resolution = "l"
-coral = True
+coral = False
 
 def add_z_if_needed(s):
     if len(s) == 0:
@@ -288,7 +288,7 @@ def getEEZ(ax):
                     x = np.where(x < 0, x + 360, x)  # For longitudes < 0 (e.g., -170°), shift to +180°
                     
                     # Plot the boundary line
-                    ax.plot(x, y, marker=None, color='pink', linewidth=2)  # Plot the boundary line
+                    ax.plot(x, y, marker=None, color='pink', linewidth=0.5,linestyle='--')  # Plot the boundary line
 
     else:
         print("Failed to retrieve the GeoJSON data.")
@@ -314,7 +314,6 @@ def getMap(west_bound, east_bound, south_bound, north_bound,wms_url,layers,trans
         "srs": "EPSG:4326",  # Using EPSG:4326 projection (latitude/longitude)
         "bbox": "%s,%s,%s,%s" % (west_bound, south_bound, east_bound, north_bound)
     }
-
     # Make the WMS request using requests
     response = requests.get(wms_url, params=params)
     img = Image.open(BytesIO(response.content))

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import cgi
+#import cgi
 import json
 import requests
 import numpy as np
@@ -12,9 +12,9 @@ import sys
 from datetime import datetime
 from io import BytesIO
 import sys, os
-import cgi, cgitb
+#import cgi, cgitb
 import io
-
+"""
 form = cgi.FieldStorage() 
 region = form.getvalue('region')
 layer_map = form.getvalue('layer_map')
@@ -27,17 +27,18 @@ legend_steps = 6
 coral = False
 if outlook == "True":
     coral = True
-
 """
+
+
 ##INPUT PARAMS###
-region = 1
-time = "2025-01-01T00:00:00Z"
-layer_map = 17
-legend_steps = 6
+region = 14
+time = "2025-03-03T00:00:00Z"
+layer_map = 5
+legend_steps = 5
 units = "null"
 resolution = "l"
 coral = False
-"""
+
 def add_z_if_needed(s):
     if len(s) == 0:
         return 'Z'  # or just return s if you want empty string to remain empty
@@ -147,8 +148,7 @@ if get_map_names != None or get_map_names != "":
     else:
         title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
     dataset_text = get_map_names[2]
-##END NEWWW
-
+##END NEW
 logo_url = "./Logo_cropped.png" 
 
 
@@ -173,39 +173,7 @@ def getBBox(country_id):
         print(f"Failed to retrieve bounding box data. Status code: {response.status_code}")
     
     return west_bound, east_bound, south_bound, north_bound, country_name
-"""
-def getLegend(ax_legend,wms_url,palette,layers,min_color,max_color,steps,units):
-     # Custom legend creation
-    position = steps - 1
-    width = 18
-    height = 300
 
-    # URL of the legend image
-    legend_url = "%s?REQUEST=GetLegendGraphic&PALETTE=%s&LAYERS=%s&COLORSCALERANGE=%s,%s&COLORBARONLY=true&WIDTH=%s&HEIGHT=%s" % (wms_url, palette, layers, min_color, max_color,width, height)
-
-    # Fetch the image from the URL
-    response = requests.get(legend_url)
-    if response.status_code == 200:
-        # Load the image using PIL
-        image = Image.open(BytesIO(response.content))
-
-        # Add the legend on the right side of the map
-        
-        ax_legend.imshow(np.array(image))  # Show the legend image
-
-        # Add labels for the steps
-        steps = np.linspace(float(min_color), float(max_color), steps)  # Steps from min to max value
-        for i, step in enumerate(steps):
-            # Calculate the position of the label
-            ax_legend.text(1.05, (i / position), f'{step:.1f}', transform=ax_legend.transAxes, fontsize=6, color='black', va='center', ha='left')
-        if units != "null":
-            # Add units on the left, aligned to the bottom in vertical orientation
-            ax_legend.text(1.9, 0.5, units, transform=plt.gca().transAxes, fontsize=8, color='black', va='center', ha='left', rotation=90)
-
-        ax_legend.axis('off')  # Hide the axes of the legend
-    else:
-        print(f"Failed to fetch the legend image. Status code: {response.status_code}")
-"""
 def getLegend(ax_legend, wms_url, palette, layers, min_color, max_color, steps, units, coral):
     # Custom hardcoded legend values
     def custom_legend():
@@ -314,7 +282,6 @@ def getMap(west_bound, east_bound, south_bound, north_bound,wms_url,layers,trans
         "srs": "EPSG:4326",  # Using EPSG:4326 projection (latitude/longitude)
         "bbox": "%s,%s,%s,%s" % (west_bound, south_bound, east_bound, north_bound)
     }
-
     # Make the WMS request using requests
     response = requests.get(wms_url, params=params)
     img = Image.open(BytesIO(response.content))
@@ -326,6 +293,8 @@ def cm2inch(*tupl):
         return tuple(i/inch for i in tupl[0])
     else:
         return tuple()
+
+def getfromDAP():
 
 ####MAIN###
 output_filename = "./maps/%s_%s_%s_%s.png" % (layers,layer_map,region,date2)
@@ -422,9 +391,10 @@ else:
     ax_logo = fig.add_axes([0.07, ax2_pos.y1 - 0.001, 0.13, 0.15])  # Adjust the y-position slightly above ax2
     ax_logo.imshow(logo)
     ax_logo.axis('off')  
-
+    plt.show()
+    """
     plt.savefig(output_filename, dpi=300,bbox_inches='tight', pad_inches=0.1) 
-
+    
     length = os.stat(output_filename).st_size
 
     sys.stdout.write("Content-Type: image/png\n")
@@ -432,7 +402,7 @@ else:
     sys.stdout.write("\n")
     sys.stdout.flush()
     sys.stdout.buffer.write(open(output_filename, "rb").read())
-
+    """
 
     """
     print("Content-Type: text/html; charset=UTF-8")
