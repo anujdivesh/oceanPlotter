@@ -70,6 +70,8 @@ def fetch_wms_layer_data(api_url):
         interval_step = data.get('interval_step')
         logscale = data.get('logscale')
         get_map_names = data.get('get_map_names')
+        specific_timestemps = data.get('specific_timestemps')
+        interval_step = data.get('interval_step')
         
         # Return all extracted values
         return {
@@ -85,7 +87,9 @@ def fetch_wms_layer_data(api_url):
             'period': period,
             'interval_step': interval_step,
             'logscale': logscale,
-            'get_map_names':get_map_names
+            'get_map_names':get_map_names,
+            'specific_timestemps':specific_timestemps,
+            'interval_step':interval_step
         }
     else:
         # If request fails, return a message
