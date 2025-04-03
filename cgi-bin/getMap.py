@@ -120,15 +120,19 @@ formatted_date2 = date.strftime("%Y%m%d")
 get_map_names = layer_data['get_map_names']
 
 ##NEW
-new_name = ""
+new_name = []
 week = False
 if "{week}" in get_map_names:
     spec = layer_data['specific_timestemps']
+    specsplit = spec.split(',')
+    specsplit = [s.replace(" ", "") for s in specsplit]
     interval = layer_data['interval_step']
     intsplot = interval.split(',')
+
     cleaned_text = time.replace("Z", "")
-    index = spec.index(cleaned_text)
-    new_name = get_map_names.replace("{week}", "%s Week"%(intsplot[index]))
+    index = specsplit.index(cleaned_text)
+    new_nametmp = get_map_names.replace("{week}", "%s Week"%(intsplot[index]))
+    new_name = new_nametmp.split('/')
     week = True
 
 
@@ -139,7 +143,7 @@ if get_map_names != None or get_map_names != "":
     get_map_names = layer_data['get_map_names'].split('/')
     formatted_date = date.strftime(get_map_names[1])
     if week:
-        title_suffix = "%s: %s" % (new_name,formatted_date)
+        title_suffix = "%s: %s" % (new_name[0],formatted_date)
     else:
         title_suffix = "%s: %s" % (get_map_names[0],formatted_date)
     dataset_text = get_map_names[2]
