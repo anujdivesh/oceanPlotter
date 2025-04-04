@@ -14,6 +14,10 @@ from io import BytesIO
 import sys, os
 #import cgi, cgitb
 import io
+import ssl
+import warnings
+import xarray as xr
+import certifi
 """
 form = cgi.FieldStorage() 
 region = form.getvalue('region')
@@ -31,13 +35,24 @@ if outlook == "True":
 
 
 ##INPUT PARAMS###
-region = 14
+region = 1
 time = "2025-03-03T00:00:00Z"
 layer_map = 5
+#time = "2024-12-22T00:00:00Z"
+#layer_map = 17
 legend_steps = 5
 units = "null"
-resolution = "l"
+resolution = "h"
 coral = False
+
+##NEW 
+custom = False
+
+array_of_custom_layermap_ids = [5,20,17]
+if layer_map in array_of_custom_layermap_ids:
+    custom = True
+
+##END
 
 def add_z_if_needed(s):
     if len(s) == 0:
@@ -119,6 +134,14 @@ date2 = date.strftime("%Y-%m-%dT%H%M%SZ")
 formatted_date = date.strftime("%-d %B %Y")
 formatted_date2 = date.strftime("%Y%m%d")
 get_map_names = layer_data['get_map_names']
+
+##NEW
+dap_url = layer_data['wms_url']
+if "wms" in dap_url:
+    dap_url = dap_url.replace("wms", "dodsC")
+
+dap_variable = layer_data['layer_name']
+dap_time = time
 
 ##NEW
 new_name = []
@@ -294,7 +317,65 @@ def cm2inch(*tupl):
     else:
         return tuple()
 
-def getfromDAP():
+def getfromDAP(url, target_time, variable_name):
+    try:
+        # Open dataset with SSL verification
+        with xr.open_dataset(url, engine='netcdf4') as ds:
+            
+            # Get available times (handle bytes if needed)
+            if isinstance(ds.time.values[0], bytes):
+                time_str = [t.decode('utf-8') for t in ds.time.values]
+                time_dt = np.array([datetime.strptime(t, "%Y-%m-%dT%H:%M:%SZ") for t in time_str])
+            else:
+                time_dt = ds.time.values
+                time_str = [str(t) for t in time_dt]
+            
+            # Find closest time
+            target_dt = datetime.strptime(target_time, "%Y-%m-%dT%H:%M:%SZ")
+            time_index = abs(time_dt - target_dt).argmin()
+            
+            # Extract variable data
+            if variable_name not in ds.variables:
+                available_vars = list(ds.variables.keys())
+                raise ValueError(f"Variable '{variable_name}' not found. Available variables: {available_vars}")
+            
+            data = ds[variable_name].isel(time=time_index)
+            
+            # Determine coordinate names
+            coord_names = {
+                'lon': ['lon', 'longitude', 'x', 'X'],
+                'lat': ['lat', 'latitude', 'y', 'Y']
+            }
+            
+            # Find longitude coordinate
+            lon_name = None
+            for possible_name in coord_names['lon']:
+                if possible_name in ds.coords:
+                    lon_name = possible_name
+                    break
+            if lon_name is None:
+                raise ValueError("Could not identify longitude coordinate variable")
+            
+            # Find latitude coordinate
+            lat_name = None
+            for possible_name in coord_names['lat']:
+                if possible_name in ds.coords:
+                    lat_name = possible_name
+                    break
+            if lat_name is None:
+                raise ValueError("Could not identify latitude coordinate variable")
+            
+            # Get coordinates
+            lon = ds[lon_name].values
+            lat = ds[lat_name].values
+            
+            # Prepare data values
+            data_values = np.ma.masked_invalid(data.values.squeeze())
+            
+            return lon, lat, data_values
+            
+    except Exception as e:
+        raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
 
 ####MAIN###
 output_filename = "./maps/%s_%s_%s_%s.png" % (layers,layer_map,region,date2)
@@ -328,13 +409,35 @@ else:
     ax2 = fig.add_axes([0.09, 0.2, 0.8, 0.65])
     title = "%s \n %s" % (country_name,title_suffix)
     ax2.set_title(title, pad=10, fontsize=8)
+    if custom:
+        ##NEW GET MAP
+        #url = "https://ocean-thredds.spc.int/thredds/dodsC/POP/model/regional/noaa/nrt/daily/sst_anomalies/latest.ncml"
+
+        lon, lat, sst_anomaly = getfromDAP(dap_url, dap_time, dap_variable)
+        # Create the plot on ax2
+        cs = ax2.contourf(lon, lat, sst_anomaly, 
+                        levels=np.linspace(min_color, max_color, 21),
+                        cmap='coolwarm',
+                        extend='both')
+
+        # Add colorbar to ax2
+        ax2_pos = ax2.get_position()
+        ax_legend_width = 0.02  # Width of the legend
+        ax_legend_gap = 0.001    # Gap between ax2 and ax_legend
+        ax_legend = fig.add_axes([ax2_pos.x1, ax2_pos.y0, ax_legend_width, ax2_pos.height])
+
+        # Plot colorbar in the legend axes
+        cbar = plt.colorbar(cs, cax=ax_legend) 
+        cbar.set_ticks(np.arange(min_color, max_color, 1))
+        cbar.ax.tick_params(labelsize=6)
+        #END NEW
 
     # Create Basemap
     m = Basemap(projection='cyl', llcrnrlat=south_bound, urcrnrlat=north_bound, 
                 llcrnrlon=west_bound, urcrnrlon=east_bound, resolution=resolution, ax=ax2)
 
     # Draw coastlines and countries
-    m.drawcoastlines()
+    m.drawcoastlines(linewidth=0.3)
     m.fillcontinents(color='#A9A9A9', lake_color='white')
     m.drawcountries()
 
@@ -353,19 +456,22 @@ else:
     lon_ticks = np.arange(west_bound, east_bound+1, bbox_offset)  # Create longitude ticks every 20 degrees
     m.drawmeridians(lon_ticks, labels=[0, 0, 0, 1],fmt='%1.0f',fontsize=6,color='grey')  # Labels on all sides
 
+    
+
     #GETMAPP
-    img_array = np.array(getMap(west_bound, east_bound, south_bound, north_bound,wms_url,\
-    layers,transparent,styles,min_color,max_color,numcolorbands,time,logscale))
-
-    m.imshow(img_array, origin='upper')
-
-    if total_layers > 1:
+    if not custom:
         img_array = np.array(getMap(west_bound, east_bound, south_bound, north_bound,wms_url,\
-        layer_data['layer_name'].split(',')[1],transparent,layer_data['styles'].split(',')[1],min_color,max_color,numcolorbands,time,logscale))
+        layers,transparent,styles,min_color,max_color,numcolorbands,time,logscale))
 
         m.imshow(img_array, origin='upper')
 
+        if total_layers > 1:
+            img_array = np.array(getMap(west_bound, east_bound, south_bound, north_bound,wms_url,\
+            layer_data['layer_name'].split(',')[1],transparent,layer_data['styles'].split(',')[1],min_color,max_color,numcolorbands,time,logscale))
 
+            m.imshow(img_array, origin='upper')
+
+        
     getEEZ(ax2)
 
     ax2_pos = ax2.get_position()
@@ -373,8 +479,9 @@ else:
     # Create ax_legend next to ax2
     ax_legend_width = 0.02  # Width of the legend
     ax_legend_gap = 0.01  # Gap between ax2 and ax_legend
-    ax_legend = fig.add_axes([ax2_pos.x1 + ax_legend_gap, ax2_pos.y0, ax_legend_width, ax2_pos.height])  # Align with ax2
-    getLegend(ax_legend,wms_url,palette,layers,min_color,max_color,legend_steps,units,coral)
+    if not custom:
+        ax_legend = fig.add_axes([ax2_pos.x1 + ax_legend_gap, ax2_pos.y0, ax_legend_width, ax2_pos.height])  # Align with ax2
+        getLegend(ax_legend,wms_url,palette,layers,min_color,max_color,legend_steps,units,coral)
 
     # Adjusting the logo position based on ax2's position
     logo = Image.open(logo_url)
@@ -391,7 +498,7 @@ else:
     ax_logo = fig.add_axes([0.07, ax2_pos.y1 - 0.001, 0.13, 0.15])  # Adjust the y-position slightly above ax2
     ax_logo.imshow(logo)
     ax_logo.axis('off')  
-    plt.show()
+    plt.savefig('anuj.png', dpi=300,bbox_inches='tight', pad_inches=0.1) 
     """
     plt.savefig(output_filename, dpi=300,bbox_inches='tight', pad_inches=0.1) 
     
