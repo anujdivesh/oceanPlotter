@@ -344,7 +344,7 @@ def plot_filled_pcolor(ax, ax_legend, lon, lat, data,
 def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
                    min_color_plot, max_color_plot, steps,region,
                    cmap_name='jet', units='m',
-                   step=30, scale=30, arrow_scale=0.5):
+                   scale=30, arrow_scale=0.5):
     
     # Convert wave direction to components
     wave_dir_rad = np.radians(wave_dir)
@@ -381,6 +381,7 @@ def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
     theta = np.radians(wave_dir)
     u_arrows = arrow_scale * np.sin(theta)
     v_arrows = arrow_scale * np.cos(theta)
+    step = 30
     if region != 1:
         step = 10
     else:
