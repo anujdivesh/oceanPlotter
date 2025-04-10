@@ -341,9 +341,9 @@ def plot_filled_pcolor(ax, ax_legend, lon, lat, data,
     return pc, cbar
 
 def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
-                   min_color_plot, max_color_plot, steps,region,
+                   min_color_plot, max_color_plot, steps,region,step,
                    cmap_name='jet', units='m',
-                   step=30, scale=30, arrow_scale=0.5):
+                   scale=30, arrow_scale=0.5):
     
     # Convert wave direction to components
     wave_dir_rad = np.radians(wave_dir)
@@ -380,10 +380,6 @@ def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
     theta = np.radians(wave_dir)
     u_arrows = arrow_scale * np.sin(theta)
     v_arrows = arrow_scale * np.cos(theta)
-    if region != 1:
-        step = 10
-    else:
-        step = 50
     
     q = ax.quiver(x[::step, ::step], y[::step, ::step], 
                 u_arrows[::step, ::step], v_arrows[::step, ::step],
@@ -609,7 +605,7 @@ def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound):
 config = get_config_variables()
 
 #####PARAMETER#####
-region = 1
+region = 3
 layer_id = 2
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "h"
@@ -667,8 +663,11 @@ elif plot_type == "wave_with_dir":
     wave_height_varib, wave_dir_varib = dap_variable.split(',')
     lon, lat, wave_height = getfromDAP(dap_url, time, wave_height_varib, adjust_lon=True)
     _, _, wave_dir = getfromDAP(dap_url, time, wave_dir_varib, adjust_lon=True)
+    step = 10
+    if int(region) == 1:
+        step = 30
     cs, q, cbar = plot_wave_field(ax2, ax_legend, m, lon, lat, wave_height, wave_dir,\
-                             min_color_plot, max_color_plot, steps,region, cmap_name=cmap_name, units=units)
+                             min_color_plot, max_color_plot, steps,region, step, cmap_name=cmap_name, units=units)
 elif plot_type == "discrete":
     lons, lats, bleaching_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
     tmp_color, tmp_label = discrete.split('-')
