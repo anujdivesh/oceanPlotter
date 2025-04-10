@@ -381,10 +381,6 @@ def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
     theta = np.radians(wave_dir)
     u_arrows = arrow_scale * np.sin(theta)
     v_arrows = arrow_scale * np.cos(theta)
-    if region != 1:
-        step = 10
-    else:
-        step = 50
     
     q = ax.quiver(x[::step, ::step], y[::step, ::step], 
                 u_arrows[::step, ::step], v_arrows[::step, ::step],
