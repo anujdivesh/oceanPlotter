@@ -35,7 +35,7 @@ if outlook == "True":
 
 
 ##INPUT PARAMS###
-region = 1
+region = 2
 time = "2025-03-03T00:00:00Z"
 layer_map = 5
 #time = "2024-12-22T00:00:00Z"
