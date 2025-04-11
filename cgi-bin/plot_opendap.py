@@ -275,7 +275,7 @@ def get_plot_config(layer_map_data):
     units = plotter_config[5]
     levels = []
     if plotter_config[6] != "null":
-        levels = np.array(eval(plotter_config[7]), dtype=float)
+        levels = np.array(eval(plotter_config[6]), dtype=float)
     discrete = plotter_config[7]
     
     return cmap_name, plot_type, min_color_plot,max_color_plot,steps,units,levels,discrete

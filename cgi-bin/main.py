@@ -274,7 +274,7 @@ def get_plot_config(layer_map_data):
     units = plotter_config[5]
     levels = []
     if plotter_config[6] != "null":
-        levels = np.array(eval(plotter_config[7]), dtype=float)
+        levels = np.array(eval(plotter_config[6]), dtype=float)
     discrete = plotter_config[7]
     
     return cmap_name, plot_type, min_color_plot,max_color_plot,steps,units,levels,discrete
@@ -605,8 +605,8 @@ def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound):
 config = get_config_variables()
 
 #####PARAMETER#####
-region = 3
-layer_id = 2
+region = 1
+layer_id = 8
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "h"
 #####PARAMETER#####
@@ -616,7 +616,6 @@ layer_map_data = fetch_wms_layer_data(layer_id)
 #REMOVE DEMO
 time = demo_time(layer_map_data)
 #REMOVE DEMO
-
 #####MAIN#####
 dap_url, dap_variable = get_dap_config(layer_map_data)
 title, dataset_text = get_title(layer_map_data,time)
