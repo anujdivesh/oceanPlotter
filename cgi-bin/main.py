@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 import geopandas as gpd
 import sys
-from datetime import datetime
+from datetime import datetime,timedelta
 from io import BytesIO
 import sys, os
 #import cgi, cgitb
@@ -21,7 +21,8 @@ from matplotlib.colors import BoundaryNorm
 import pandas as pd
 from owslib.wms import WebMapService
 import matplotlib.colors as mcolors
-
+import netCDF4 as nc
+from matplotlib.lines import Line2D
 #####FUNCTIONS#####
 def fetch_wms_layer_data(layer_id):
     try:
@@ -170,7 +171,7 @@ def getEEZ(ax,geojson_url):
                     x = np.where(x < 0, x + 360, x)  # For longitudes < 0 (e.g., -170°), shift to +180°
                     
                     # Plot the boundary line
-                    ax.plot(x, y, marker=None, color='#ff007f', linewidth=1,linestyle='--')  # Plot the boundary line
+                    ax.plot(x, y, marker=None, color='black', linewidth=0.5,linestyle='--')  # Plot the boundary line
 
     else:
         print("Failed to retrieve the GeoJSON data.")
@@ -229,6 +230,9 @@ def demo_time(layer_map_data):
 def get_dap_config(layer_map_data):
     dap_url = layer_map_data.url.replace("wms", "dodsC")
     dap_variable = layer_map_data.layer_name
+    dapvaribsplit = dap_variable.split(',')
+    if len(dapvaribsplit) >= 1:
+        dap_variable = dapvaribsplit[0]
     return dap_url, dap_variable
 
 def get_title(layer_map_data,time):
@@ -279,6 +283,37 @@ def get_plot_config(layer_map_data):
     
     return cmap_name, plot_type, min_color_plot,max_color_plot,steps,units,levels,discrete
 
+def plot_filled_contours_no_zero(ax, ax_legend, lon, lat, data, 
+                        min_color_plot, max_color_plot, steps,
+                        cmap_name='RdBu_r', units='(°C)'):
+
+    # Create fixed levels for contours, excluding zero
+    levels = np.arange(min_color_plot, max_color_plot, steps)
+    levels = levels[levels != 0]  # Remove zero level
+    
+    # Plot filled contours with fixed levels
+    cs = ax.contourf(
+        lon, lat, data,
+        levels=levels,
+        cmap=cmap_name,
+        extend='both'  # Adds arrows if data exceeds min/max
+    )
+    
+    # Add colorbar with matching ticks
+    cbar = plt.colorbar(cs, cax=ax_legend)
+    cbar.set_ticks(levels)  # Same ticks as contour levels
+    cbar.ax.tick_params(labelsize=7)
+    cbar.set_label(
+        units,
+        fontsize=6,
+        rotation=0,
+        va='center',
+        ha='left',
+        labelpad=1
+    )
+    
+    return cs, cbar
+
 def plot_filled_contours(ax, ax_legend, lon, lat, data, 
                         min_color_plot, max_color_plot, steps,
                         cmap_name='RdBu_r', units='(°C)'):
@@ -293,6 +328,64 @@ def plot_filled_contours(ax, ax_legend, lon, lat, data,
         extend='both'  # Adds arrows if data exceeds min/max
     )
     
+    # Add colorbar with matching ticks
+    cbar = plt.colorbar(cs, cax=ax_legend)
+    cbar.set_ticks(levels)  # Same ticks as contour levels
+    cbar.ax.tick_params(labelsize=7)
+    cbar.set_label(
+        units,
+        fontsize=6,
+        rotation=0,
+        va='center',
+        ha='left',
+        labelpad=1
+    )
+    
+    return cs, cbar
+
+def plot_climatology(dap_url, time, ax, ax_legend, lon, lat, data, 
+                        min_color_plot, max_color_plot, steps,
+                        cmap_name='RdBu_r', units='(°C)'):
+    # Create fixed levels for contours
+    levels = np.arange(min_color_plot, max_color_plot, steps)
+    
+    # Plot filled contours with fixed levels
+    cs = ax.contourf(
+        lon, lat, data,
+        levels=levels,
+        cmap=cmap_name,
+        extend='both'  # Adds arrows if data exceeds min/max
+    )
+    contour_29 = ax.contour(
+        lon, lat, data,
+        levels=[29],
+        colors='purple',
+        linewidths=2,
+        linestyles='solid',
+        zorder=5,
+        label=f'(SST))'
+    )
+    clim_lon, clim_lat, sst_clim = getfromDAP(dap_url, time, "sst_clim",adjust_lon=True)
+    
+    contour_clim = ax.contour(
+            clim_lon, clim_lat, sst_clim,
+            levels=[29],
+            colors='green',
+            linewidths=2,
+            linestyles='solid',
+            zorder=6,
+            label='Climatology'
+        )
+    # Optional: Add labels to the contour line
+    #ax.clabel(contour_29, inline=True, fontsize=8, fmt='%1.0f')
+    legend_elements = [
+        Line2D([0], [0], color='purple', lw=1, label=f'SST'),
+        Line2D([0], [0], color='green', lw=1, label='Climatology')
+    ]
+
+    # Add legend
+    ax.legend(handles=legend_elements, loc='upper right', fontsize=6)
+
     # Add colorbar with matching ticks
     cbar = plt.colorbar(cs, cax=ax_legend)
     cbar.set_ticks(levels)  # Same ticks as contour levels
@@ -606,7 +699,7 @@ config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 8
+layer_id = 5
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "h"
 #####PARAMETER#####
@@ -653,7 +746,12 @@ if plot_type == "contourf":
     cs, cbar = plot_filled_contours(ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
         min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
     )
-if plot_type == "pcolormesh":
+elif plot_type == "contourf_nozero":
+    lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
+    cs, cbar = plot_filled_contours_no_zero(ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
+        min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
+    )
+elif plot_type == "pcolormesh":
     lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
     cs, cbar = plot_filled_pcolor(ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
         min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
@@ -683,6 +781,12 @@ elif plot_type == "levels_pcolor":
 elif plot_type == "levels_contourf":
     lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
     plot_levels_contour(ax2, ax_legend, lons, lats, chl_data, units='mg/m³',levels=levels)
+
+elif plot_type == "climate":
+    lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
+    cs, cbar = plot_climatology(dap_url,time,ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
+        min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
+    )
 
 
 #ADD LOGO AND FOOTER

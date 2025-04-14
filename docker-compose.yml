@@ -7,4 +7,4 @@ services:
     ports:
       - "8088:80"
     volumes:
-      - /mnt/data/ocean_portal/config/cgi-docker/cgi-bin:/usr/lib/cgi-bin
+      - /mnt/data/ocean_portal/config/oceanPlotter/cgi-bin:/usr/lib/cgi-bin
