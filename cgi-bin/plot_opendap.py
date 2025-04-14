@@ -16,6 +16,7 @@ import xarray as xr
 from matplotlib.colors import BoundaryNorm
 import pandas as pd
 import matplotlib.colors as mcolors
+from matplotlib.lines import Line2D
 
 import cgi, cgitb
 form = cgi.FieldStorage() 
