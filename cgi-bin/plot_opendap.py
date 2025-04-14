@@ -671,7 +671,7 @@ def plot_climatology(dap_url, time, ax, ax_legend, lon, lat, data,
     # Optional: Add labels to the contour line
     #ax.clabel(contour_29, inline=True, fontsize=8, fmt='%1.0f')
     legend_elements = [
-        Line2D([0], [0], color='purple', lw=1, label=f'SST'),
+        Line2D([0], [0], color='purple', lw=1, label=f'SST Forecast'),
         Line2D([0], [0], color='green', lw=1, label='Climatology')
     ]
 
