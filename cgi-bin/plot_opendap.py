@@ -171,7 +171,7 @@ def getEEZ(ax,geojson_url):
                     x = np.where(x < 0, x + 360, x)  # For longitudes < 0 (e.g., -170°), shift to +180°
                     
                     # Plot the boundary line
-                    ax.plot(x, y, marker=None, color='#ff007f', linewidth=1,linestyle='--')  # Plot the boundary line
+                    ax.plot(x, y, marker=None, color='black', linewidth=0.5,linestyle='--')  # Plot the boundary line
 
     else:
         print("Failed to retrieve the GeoJSON data.")
@@ -797,7 +797,7 @@ else:
     elif plot_type == "levels_contourf":
         lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
         plot_levels_contour(ax2, ax_legend, lons, lats, chl_data, units='mg/m³',levels=levels)
-        
+
     elif plot_type == "climate":
         lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
         cs, cbar = plot_climatology(dap_url,time,ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
