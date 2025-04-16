@@ -43,7 +43,7 @@ def fetch_wms_layer_data(layer_id):
         return data
     except requests.exceptions.RequestException as e:
         return None
-
+"""
 def getfromDAP(url, target_time, variable_name, adjust_lon=False):
     try:
         # Open dataset with SSL verification
@@ -68,6 +68,8 @@ def getfromDAP(url, target_time, variable_name, adjust_lon=False):
                 available_vars = list(ds.variables.keys())
                 raise ValueError(f"Variable '{variable_name}' not found. Available variables: {available_vars}")
             
+            if len(data.dims) == 3:
+                data = data.isel({data.dims[0]: 0})
             data = ds[variable_name].isel(time=time_index)
             
             # Determine coordinate names
@@ -107,6 +109,77 @@ def getfromDAP(url, target_time, variable_name, adjust_lon=False):
             data_values = np.ma.masked_invalid(data.values.squeeze())
             
             return lon, lat, data_values
+            
+    except Exception as e:
+        raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
+"""
+def getfromDAP(url, target_time, variable_name, adjust_lon=False):
+    try:
+        # Open dataset with SSL verification
+        with xr.open_dataset(url, engine='netcdf4', mask_and_scale=True, decode_cf=True) as ds:
+            
+            # Get available times (handle bytes if needed)
+            if isinstance(ds.time.values[0], bytes):
+                time_str = [t.decode('utf-8') for t in ds.time.values]
+                time_dt = np.array([datetime.strptime(t, "%Y-%m-%dT%H:%M:%SZ") for t in time_str])
+            else:
+                # Convert numpy datetime64 to datetime objects if needed
+                time_dt = [pd.to_datetime(t).to_pydatetime() for t in ds.time.values]
+            
+            # Convert target time to datetime object
+            target_dt = datetime.strptime(target_time, "%Y-%m-%dT%H:%M:%SZ")
+            
+            # Find closest time by comparing timestamps
+            time_index = np.argmin([abs((t - target_dt).total_seconds()) for t in time_dt])
+            
+            # Extract variable data
+            if variable_name not in ds.variables:
+                available_vars = list(ds.variables.keys())
+                raise ValueError(f"Variable '{variable_name}' not found. Available variables: {available_vars}")
+            
+            data = ds[variable_name].isel(time=time_index)
+            
+            # If variable has 3 dimensions (e.g., depth), select first depth level
+            if len(data.dims) == 3:
+                data = data.isel({data.dims[0]: 0})  # Select first index of first dimension
+            
+            # Determine coordinate names
+            coord_names = {
+                'lon': ['lon', 'longitude', 'x', 'X'],
+                'lat': ['lat', 'latitude', 'y', 'Y']
+            }
+            
+            # Find longitude coordinate
+            lon_name = None
+            for possible_name in coord_names['lon']:
+                if possible_name in ds.coords:
+                    lon_name = possible_name
+                    break
+            if lon_name is None:
+                raise ValueError("Could not identify longitude coordinate variable")
+            
+            # Find latitude coordinate
+            lat_name = None
+            for possible_name in coord_names['lat']:
+                if possible_name in ds.coords:
+                    lat_name = possible_name
+                    break
+            if lat_name is None:
+                raise ValueError("Could not identify latitude coordinate variable")
+            
+            # Get coordinates
+            lon = ds[lon_name].values
+            lat = ds[lat_name].values
+            
+            # Adjust longitude if requested (for 180° crossing)
+            if adjust_lon:
+                if np.any(lon < 0):  # Only adjust if there are negative longitudes
+                    lon = np.where(lon < 0, lon + 360, lon)
+            
+            # Extract and mask data values
+            data_extract = np.ma.masked_invalid(data.values.squeeze())
+            
+            return lon, lat, data_extract
             
     except Exception as e:
         raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
