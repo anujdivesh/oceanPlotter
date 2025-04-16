@@ -444,6 +444,7 @@ def add_logo_and_footer(fig, ax, ax2, ax2_pos, region,
                        copyright_text, footer_text, dataset_text,
                        logo_path="./Logo_cropped.png"):
     # Add logo
+    """
     try:
         logo_img = Image.open(logo_path)
         if region == 1:
@@ -455,18 +456,23 @@ def add_logo_and_footer(fig, ax, ax2, ax2_pos, region,
         logo_ax.axis('off')
     except FileNotFoundError:
         print(f"Logo file not found at {logo_path}")
+    """
 
     # Add footer elements
     if region == 1:
         ax2.text(-0.08, ax2_pos.y0-0.20, copyright_text,
                 transform=ax.transAxes, fontsize=6, verticalalignment='top')
+        """
         ax2.text(-0.08, ax2_pos.y0-0.225, footer_text,
                 transform=ax.transAxes, fontsize=6, verticalalignment='top')
+        """
     else:
         ax2.text(0.05, ax2_pos.y0-0.20, copyright_text,
                 transform=ax.transAxes, fontsize=6, verticalalignment='top')
+        """
         ax2.text(0.05, ax2_pos.y0-0.225, footer_text,
                 transform=ax.transAxes, fontsize=6, verticalalignment='top')
+        """
     
     # Common dataset text placement
     ax2.text(0.90, ax2_pos.y0-0.20, dataset_text,
