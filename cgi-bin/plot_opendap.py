@@ -872,11 +872,11 @@ else:
 
     elif plot_type == "levels_pcolor":
         lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
-        plot_levels_pcolor(ax2, ax_legend, lons, lats, chl_data,cmap_name, units='mg/m³',levels=levels)
+        plot_levels_pcolor(ax2, ax_legend, lons, lats, chl_data,cmap_name, units=units,levels=levels)
 
     elif plot_type == "levels_contourf":
         lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
-        plot_levels_contour(ax2, ax_legend, lons, lats, chl_data,cmap_name, units='mg/m³',levels=levels,)
+        plot_levels_contour(ax2, ax_legend, lons, lats, chl_data,cmap_name, units=units,levels=levels,)
 
     elif plot_type == "climate":
         lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
