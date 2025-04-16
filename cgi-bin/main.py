@@ -181,6 +181,7 @@ def getfromDAP(url, target_time, variable_name, adjust_lon=False):
             
     except Exception as e:
         raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
+
 def getCountryData(country_id):
     # Fetch bounding box data from API
     region_url_prefix = "https://ocean-middleware.spc.int/middleware/api/country/"
@@ -640,12 +641,12 @@ def add_logo_and_footer(fig, ax, ax2, ax2_pos, region,
     # Adjust subplots
     plt.subplots_adjust(bottom=0.15)
 
-def plot_levels_pcolor(ax, ax_legend, lons, lats, chl_data, units='mg/m³',levels=[]):
+def plot_levels_pcolor(ax, ax_legend, lons, lats, chl_data,cmap_name='jet', units='mg/m³',levels=[]):
     # Clip data to level boundaries
     chl_clipped = np.clip(chl_data, levels[0], levels[-1])
     
     # Create colormap with one less color than levels
-    cmap = plt.get_cmap('jet', len(levels)-1)
+    cmap = plt.get_cmap(cmap_name, len(levels)-1)
     
     # Create normalization with extend to handle out-of-range values
     norm = mcolors.BoundaryNorm(levels, cmap.N)
@@ -665,7 +666,7 @@ def plot_levels_pcolor(ax, ax_legend, lons, lats, chl_data, units='mg/m³',level
     
     return cs, cbar
 
-def plot_levels_contour(ax, ax_legend, lons, lats, chl_data, 
+def plot_levels_contour(ax, ax_legend, lons, lats, chl_data, cmap_name='jet',
                           units='mg/m³', levels=None, add_contours=True,
                           contour_kwargs=None):
     
@@ -682,7 +683,7 @@ def plot_levels_contour(ax, ax_legend, lons, lats, chl_data,
     chl_clipped = np.clip(chl_data, levels[0], levels[-1])
     
     # Create colormap and normalization
-    cmap = plt.get_cmap('jet', len(levels)-1)
+    cmap = plt.get_cmap(cmap_name, len(levels)-1)
     norm = mcolors.BoundaryNorm(levels, cmap.N)
     
     # Plot filled colors
@@ -776,7 +777,7 @@ config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 5
+layer_id = 31
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "l"
 #####PARAMETER#####
@@ -853,11 +854,11 @@ elif plot_type == "discrete":
 
 elif plot_type == "levels_pcolor":
     lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
-    plot_levels_pcolor(ax2, ax_legend, lons, lats, chl_data, units='mg/m³',levels=levels)
+    plot_levels_pcolor(ax2, ax_legend, lons, lats, chl_data,cmap_name, units='mg/m³',levels=levels)
 
 elif plot_type == "levels_contourf":
     lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
-    plot_levels_contour(ax2, ax_legend, lons, lats, chl_data, units='mg/m³',levels=levels)
+    plot_levels_contour(ax2, ax_legend, lons, lats, chl_data,cmap_name, units='mg/m³',levels=levels,)
 
 elif plot_type == "climate":
     lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
