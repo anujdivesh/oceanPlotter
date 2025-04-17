@@ -777,7 +777,7 @@ config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 31
+layer_id = 30
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "l"
 #####PARAMETER#####
