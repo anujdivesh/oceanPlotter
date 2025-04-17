@@ -1,0 +1,1505 @@
+[
+    {
+        "id": 0,
+        "title": "SLB - Lata Whart",
+        "category": "Solomon_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Lata.Wharf.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Lata.Wharf.pdf"
+    },
+    {
+        "id": 1,
+        "title": "PNG - Lombrum",
+        "category": "PNG",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.PNG.Lombrum.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.PNG.Lombrum.pdf"
+    },
+    {
+        "id": 2,
+        "title": "Fiji - Lautoka",
+        "category": "Fiji",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Fiji.Lautoka.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Fiji.Lautoka.pdf"
+    },
+    {
+        "id": 3,
+        "title": "Kiritibati - Kanton",
+        "category": "Kiribati",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Kanton.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Kanton.pdf"
+    },
+    {
+        "id": 4,
+        "title": "Kiritibati - Betio",
+        "category": "Kiribati",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Betio.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Betio.pdf"
+    },
+    {
+        "id": 5,
+        "title": "PNG - Port Moresby",
+        "category": "PNG",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.PNG.Port.Moresby.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.PNG.Port.Moresby.pdf"
+    },
+    {
+        "id": 6,
+        "title": "MHL - Majuro",
+        "category": "Marshall_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Marshal.Islands.Majuro.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Marshal.Islands.Majuro.pdf"
+    },
+    {
+        "id": 7,
+        "title": "Palau - Malakal",
+        "category": "Palau",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Palau.Islands.Malakal.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Palau.Islands.Malakal.pdf"
+    },
+    {
+        "id": 8,
+        "title": "Tonga - Neiafu",
+        "category": "Tonga",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tonga.Neiafu.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tonga.Neiafu.pdf"
+    },
+    {
+        "id": 9,
+        "title": "Samoa - Apia",
+        "category": "Samoa",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Samoa.Apia.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Samoa.Apia.pdf"
+    },
+    {
+        "id": 10,
+        "title": "Vanutu - Luganville",
+        "category": "Vanuatu",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Vanuatu.Luganville.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Vanuatu.Luganville.pdf"
+    },
+    {
+        "id": 11,
+        "title": "Fiji - Suva",
+        "category": "Fiji",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Fiji.Suva.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Fiji.Suva.pdf"
+    },
+    {
+        "id": 12,
+        "title": "COK - Rarotonga",
+        "category": "Cook_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Cook.Islands.Rarotonga.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Cook.Islands.Rarotonga.pdf"
+    },
+    {
+        "id": 13,
+        "title": "Vanuatu - Port Villa",
+        "category": "Vanuatu",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Vanuatu.Port.Vila.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Vanuatu.Port.Vila.pdf"
+    },
+    {
+        "id": 14,
+        "title": "Tonga - Nuku'alofa",
+        "category": "Tonga",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tonga.Nuku'alofa.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tonga.Nuku'alofa.pdf"
+    },
+    {
+        "id": 15,
+        "title": "Tuvalu - Funafuti",
+        "category": "Tuvalu",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tuvalu.Funafuti.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tuvalu.Funafuti.pdf"
+    },
+    {
+        "id": 16,
+        "title": "Nauru",
+        "category": "Nauru",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Nauru.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Nauru.pdf"
+    },
+    {
+        "id": 17,
+        "title": "Tuvalu - Vaitupu",
+        "category": "Tuvalu",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tuvalu.Vaitupu.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Tuvalu.Vaitupu.pdf"
+    },
+    {
+        "id": 18,
+        "title": "COK - Penrhyn",
+        "category": "Cook_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Cook.Islands.Penrhyn.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Cook.Islands.Penrhyn.pdf"
+    },
+    {
+        "id": 19,
+        "title": "FSM - Pohnpei",
+        "category": "FSM",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Pohnpei.Harbour.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Pohnpei.Harbour.pdf"
+    },
+    {
+        "id": 20,
+        "title": "Niue",
+        "category": "Niue",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Niue.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Niue.pdf"
+    },
+    {
+        "id": 21,
+        "title": "Kiritibati - Kiritimati",
+        "category": "Kiribati",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Kiritimati.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Kiribati.Kiritimati.pdf"
+    },
+    {
+        "id": 22,
+        "title": "SLB - Tarekukure",
+        "category": "Solomon_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Tarekukure.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Tarekukure.pdf"
+    },
+    {
+        "id": 23,
+        "title": "MHL - Ebeye",
+        "category": "Marshall_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Marshall.Islands.Ebeye.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Marshall.Islands.Ebeye.pdf"
+    },
+    {
+        "id": 24,
+        "title": "SLB - Honiara",
+        "category": "Solomon_Islands",
+        "document": "tidecalendar",
+        "year": "2024",
+        "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Honiara.png",
+        "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2024/2024.Solomon.Islands.Honiara.pdf"
+    },
+    {
+      "id": 25,
+      "title": "Tonga - Neiafu",
+      "category": "Tonga",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tonga_Neiafu_Calendar_2025_Proof-2.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tonga_Neiafu_Calendar_2025_Proof-2.pdf"
+  },
+  {
+      "id": 26,
+      "title": "Tuvalu - Nukulaelae",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nukulaelae_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nukulaelae_Calendar_2025.pdf"
+  },
+  {
+      "id": 27,
+      "title": "Tuvalu - Niutao",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Niutao_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Niutao_Calendar_2025.pdf"
+  },
+  {
+      "id": 28,
+      "title": "Vanuatu - Port Villa",
+      "category": "Vanuatu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Port_Vila_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Port_Vila_Calendar_2025.pdf"
+  },
+  {
+      "id": 29,
+      "title": "Tonga - Nuku'alofa",
+      "category": "Tonga",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tonga_Nukualofa_Calendar_2025_Proof-2.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tonga_Nukualofa_Calendar_2025_Proof-2.pdf"
+  },
+  {
+      "id": 30,
+      "title": "FSM - Pohnpei",
+      "category": "FSM",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/FSM_Pohnpei_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/FSM_Pohnpei_Calendar_2025_.pdf"
+  },
+  {
+      "id": 31,
+      "title": "Nauru - Nauru",
+      "category": "Nauru",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Nauru_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Nauru_Calendar_2025_.pdf"
+  },
+  {
+      "id": 32,
+      "title": "Tuvalu - Funafuti",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Funafuti_Calendar_2025-compressed.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Funafuti_Calendar_2025-compressed.pdf"
+  },
+  {
+      "id": 33,
+      "title": "Vanuatu - Lenakel",
+      "category": "Vanuatu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_-_Lenakel_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_-_Lenakel_Calendar_2025_.pdf"
+  },
+  {
+      "id": 34,
+      "title": "COK - Penrhyn",
+      "category": "Cook_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Cook_Islands-PenrhynCalendar2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Cook_Islands-PenrhynCalendar2025.pdf"
+  },
+  {
+      "id": 35,
+      "title": "COK - Rarotonga",
+      "category": "Cook_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Cook_Islands_-_Rarotonga_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Cook_Islands_-_Rarotonga_Calendar_2025_.pdf"
+  },
+  {
+      "id": 36,
+      "title": "Tuvalu - Nanumaga",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nanumaga_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nanumaga_Calendar_2025.pdf"
+  },
+  {
+      "id": 37,
+      "title": "Fiji - Vatia",
+      "category": "Fiji",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Vatia_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Vatia_Calendar_2025.pdf"
+  },
+  {
+      "id": 38,
+      "title": "MHL - Ebeye",
+      "category": "Marshall_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Marshall_Islansd_Ebeye_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Marshall_Islansd_Ebeye_Calendar_2025.pdf"
+  },
+  {
+      "id": 39,
+      "title": "Kiribati - Betio",
+      "category": "Kiribati",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_-_Betio_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_-_Betio_Calendar_2025_.pdf"
+  },
+  {
+      "id": 40,
+      "title": "SLB - Honiara",
+      "category": "Solomon_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Honiara_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Honiara_Calendar_2025.pdf"
+  },
+  {
+      "id": 41,
+      "title": "Vanuatu - Malekula",
+      "category": "Vanuatu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Malekula_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Malekula_Calendar_2025.pdf"
+  },
+  {
+      "id": 42,
+      "title": "Vanuatu - Luganville",
+      "category": "Vanuatu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Luganville_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Vanuatu_Luganville_Calendar_2025.pdf"
+  },
+  {
+      "id": 43,
+      "title": "Tuvalu - Nui",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nui_Calendar_2025-compressed.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nui_Calendar_2025-compressed.pdf"
+  },
+  {
+      "id": 44,
+      "title": "American Samoa - Pago Pago",
+      "category": "American_Samoa",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/AmericanSamoaCalendar2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/AmericanSamoaCalendar2025.pdf"
+  },
+  {
+      "id": 45,
+      "title": "Kiribati - Kiritimati",
+      "category": "Kiribati",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_-_Kiritimati_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_-_Kiritimati_Calendar_2025.pdf"
+  },
+  {
+      "id": 46,
+      "title": "Tuvalu - Vaitupu",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Vaitupu_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Vaitupu_Calendar_2025.pdf"
+  },
+  {
+      "id": 47,
+      "title": "Palau - Malakal",
+      "category": "Palau",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Palau_Ialands_-_Malakal_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Palau_Ialands_-_Malakal_Calendar_2025.pdf"
+  },
+  {
+      "id": 48,
+      "title": "Tuvalu - Nukufetau",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nukufetau_calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nukufetau_calendar_2025.pdf"
+  },
+  {
+      "id": 49,
+      "title": "MHL - Majuro",
+      "category": "Marshall_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Marshall_Islands_Majuro_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Marshall_Islands_Majuro_Calendar_2025.pdf"
+  },
+  {
+      "id": 50,
+      "title": "SLB - Tarekukure",
+      "category": "Solomon_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Tarekukure_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Tarekukure_Calendar_2025.pdf"
+  },
+  {
+      "id": 51,
+      "title": "Fiji - Port Denarau",
+      "category": "Fiji",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_-_Port_Denarau_Calendar2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_-_Port_Denarau_Calendar2025.pdf"
+  },
+  {
+      "id": 52,
+      "title": "Tuvalu - Niulakita",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Niulakita_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Niulakita_Calendar_2025.pdf"
+  },
+  {
+      "id": 53,
+      "title": "PNG - Port Moresby",
+      "category": "PNG",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/PNG_-_Port_Moresby_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/PNG_-_Port_Moresby_Calendar_2025_.pdf"
+  },
+  {
+      "id": 54,
+      "title": "Samoa - Apia",
+      "category": "Samoa",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Samoa_-_Apia_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Samoa_-_Apia_Calendar_2025.pdf"
+  },
+  {
+      "id": 55,
+      "title": "Kiribati - Kanton",
+      "category": "Kiribati",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_Kanton_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Kiribati_Kanton_Calendar_2025_.pdf"
+  },
+  {
+      "id": 56,
+      "title": "Fiji - Lautoka",
+      "category": "Fiji",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Lautoka_Calendar_2025_.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Lautoka_Calendar_2025_.pdf"
+  },
+  {
+      "id": 57,
+      "title": "PNG - Lombrum",
+      "category": "PNG",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/PNG-Lombrum_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/PNG-Lombrum_Calendar_2025.pdf"
+  },
+  {
+      "id": 58,
+      "title": "Tuvalu - Nanumea",
+      "category": "Tuvalu",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nanumea_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tuvalu_-_Nanumea_Calendar_2025.pdf"
+  },
+  {
+      "id": 59,
+      "title": "SLB - Lata Wharf",
+      "category": "Solomon_Islands",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Lata_Wharf_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Solomon_Islands_-_Lata_Wharf_Calendar_2025.pdf"
+  },
+  {
+      "id": 60,
+      "title": "Niue - Niue",
+      "category": "Niue",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Niue_Calendar_2025_pdf.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Niue_Calendar_2025_pdf.pdf"
+  },
+  {
+      "id": 61,
+      "title": "Fiji - Suva",
+      "category": "Fiji",
+      "document": "tidecalendar",
+      "year": "2025",
+      "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Suva_Calendar_2025.png",
+      "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Fiji_Suva_Calendar_2025.pdf"
+  },
+  {
+    "id": 62,
+    "title": "Kiribati - Betio",
+    "category": "Kiribati",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Betio.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Betio.pdf"
+  },
+  {
+    "id": 63,
+    "title": "Kiribati - Fanning",
+    "category": "Kiribati",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Fanning.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Fanning.pdf"
+  },
+  {
+    "id": 64,
+    "title": "Kiribati - Bonriki",
+    "category": "Kiribati",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Bonriki.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Bonriki.pdf"
+  },
+  {
+    "id": 65,
+    "title": "Kiribati - Canton",
+    "category": "Kiribati",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Canton.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Canton.pdf"
+  },
+  {
+    "id": 66,
+    "title": "Kiribati - Kiritimati",
+    "category": "Kiribati",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Kiritimati.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Kiribati/Kiritimati.pdf"
+  },
+  {
+    "id": 67,
+    "title": "Tonga - Nuku'alofa",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Nuku'alofa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Nuku'alofa.pdf"
+  },
+  {
+    "id": 68,
+    "title": "Tonga - Neiafu",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Neiafu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Neiafu.pdf"
+  },
+  {
+    "id": 69,
+    "title": "Tonga - Lifuka",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Lifuka.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Lifuka.pdf"
+  },
+  {
+    "id": 70,
+    "title": "Tonga - 'Eua",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/'Eua.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/'Eua.pdf"
+  },
+  {
+    "id": 71,
+    "title": "Tonga - Tonga",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Tonga.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Tonga.pdf"
+  },
+  {
+    "id": 72,
+    "title": "Tonga - Pangai",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Pangai.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Pangai.pdf"
+  },
+  {
+    "id": 73,
+    "title": "Tonga - TongaWB1",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/TongaWB1.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/TongaWB1.pdf"
+  },
+  {
+    "id": 74,
+    "title": "Tonga - Niuas",
+    "category": "Tonga",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Niuas.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tonga/Niuas.pdf"
+  },
+  {
+    "id": 75,
+    "title": "Wallis - Leava",
+    "category": "Wallis",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Wallis/Leava.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Wallis/Leava.pdf"
+  },
+  {
+    "id": 76,
+    "title": "Wallis - Honikulu",
+    "category": "Wallis",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Wallis/Honikulu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Wallis/Honikulu.pdf"
+  },
+  {
+    "id": 77,
+    "title": "French Polynesia - Rikitea",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rikitea.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rikitea.pdf"
+  },
+  {
+    "id": 78,
+    "title": "French Polynesia - Nuku",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Nuku.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Nuku.pdf"
+  },
+  {
+    "id": 79,
+    "title": "French Polynesia - Rurutu",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rurutu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rurutu.pdf"
+  },
+  {
+    "id": 80,
+    "title": "French Polynesia - Bora",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Bora.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Bora.pdf"
+  },
+  {
+    "id": 81,
+    "title": "French Polynesia - Raivavae",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Raivavae.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Raivavae.pdf"
+  },
+  {
+    "id": 82,
+    "title": "French Polynesia - Hiva",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Hiva.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Hiva.pdf"
+  },
+  {
+    "id": 83,
+    "title": "French Polynesia - Rangiroa",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rangiroa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rangiroa.pdf"
+  },
+  {
+    "id": 84,
+    "title": "French Polynesia - Papeete",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Papeete.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Papeete.pdf"
+  },
+  {
+    "id": 85,
+    "title": "French Polynesia - Fakarava",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Fakarava.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Fakarava.pdf"
+  },
+  {
+    "id": 86,
+    "title": "French Polynesia - Tubuai",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Tubuai.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Tubuai.pdf"
+  },
+  {
+    "id": 87,
+    "title": "French Polynesia - Rimatara",
+    "category": "French_Polynesia",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rimatara.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/French Polynesia/Rimatara.pdf"
+  },
+  {
+    "id": 88,
+    "title": "American Samoa - Pago",
+    "category": "American_Samoa",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/American Samoa/Pago.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/American Samoa/Pago.pdf"
+  },
+  {
+    "id": 89,
+    "title": "American Samoa - Tau",
+    "category": "American_Samoa",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/American Samoa/Tau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/American Samoa/Tau.pdf"
+  },
+  {
+    "id": 90,
+    "title": "Fiji - Kadavu",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Kadavu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Kadavu.pdf"
+  },
+  {
+    "id": 91,
+    "title": "Fiji - Ono-i-Lau",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Ono-i-Lau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Ono-i-Lau.pdf"
+  },
+  {
+    "id": 92,
+    "title": "Fiji - Savusavu",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Savusavu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Savusavu.pdf"
+  },
+  {
+    "id": 93,
+    "title": "Fiji - Vanua",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Vanua.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Vanua.pdf"
+  },
+  {
+    "id": 94,
+    "title": "Fiji - Taveuni",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Taveuni.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Taveuni.pdf"
+  },
+  {
+    "id": 95,
+    "title": "Fiji - Suva",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Suva.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Suva.pdf"
+  },
+  {
+    "id": 96,
+    "title": "Fiji - Beqa",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Beqa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Beqa.pdf"
+  },
+  {
+    "id": 97,
+    "title": "Fiji - Labasa",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Labasa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Labasa.pdf"
+  },
+  {
+    "id": 98,
+    "title": "Fiji - Lakepa",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Lakepa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Lakepa.pdf"
+  },
+  {
+    "id": 99,
+    "title": "Fiji - Gau",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Gau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Gau.pdf"
+  },
+  {
+    "id": 100,
+    "title": "Fiji - Lautoka",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Lautoka.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Lautoka.pdf"
+  },
+  {
+    "id": 101,
+    "title": "Fiji - Levuka",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Levuka.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Levuka.pdf"
+  },
+  {
+    "id": 102,
+    "title": "Fiji - Fiji",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Fiji.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Fiji.pdf"
+  },
+  {
+    "id": 103,
+    "title": "Fiji - Malau",
+    "category": "Fiji",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Malau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Fiji/Malau.pdf"
+  },
+  {
+    "id": 104,
+    "title": "Palau - Koror",
+    "category": "Palau",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Palau/Koror.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Palau/Koror.pdf"
+  },
+  {
+    "id": 105,
+    "title": "Guam - Guam",
+    "category": "Guam",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Guam/Guam.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Guam/Guam.pdf"
+  },
+  {
+    "id": 106,
+    "title": "Niue - Niue",
+    "category": "Niue",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Niue/Niue.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Niue/Niue.pdf"
+  },
+  {
+    "id": 107,
+    "title": "Northern Mariana - Saipan",
+    "category": "Northern_Mariana",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Northern Mariana/Saipan.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Northern Mariana/Saipan.pdf"
+  },
+  {
+    "id": 108,
+    "title": "FSM - Kosrae",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Kosrae.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Kosrae.pdf"
+  },
+  {
+    "id": 109,
+    "title": "FSM - Chuuk",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Chuuk.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Chuuk.pdf"
+  },
+  {
+    "id": 110,
+    "title": "FSM - Pohnpei",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Pohnpei.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Pohnpei.pdf"
+  },
+  {
+    "id": 111,
+    "title": "FSM - Kapingamarangi",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Kapingamarangi.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Kapingamarangi.pdf"
+  },
+  {
+    "id": 112,
+    "title": "FSM - Ebeye",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Ebeye.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Ebeye.pdf"
+  },
+  {
+    "id": 113,
+    "title": "FSM - Yap",
+    "category": "FSM",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Yap.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/FSM/Yap.pdf"
+  },
+  {
+    "id": 114,
+    "title": "PNG - Rabaul",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Rabaul.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Rabaul.pdf"
+  },
+  {
+    "id": 115,
+    "title": "PNG - Lae",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Lae.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Lae.pdf"
+  },
+  {
+    "id": 116,
+    "title": "PNG - Vanimo",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Vanimo.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Vanimo.pdf"
+  },
+  {
+    "id": 117,
+    "title": "PNG - Bialla",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Bialla.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Bialla.pdf"
+  },
+  {
+    "id": 118,
+    "title": "PNG - Samarai",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Samarai.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Samarai.pdf"
+  },
+  {
+    "id": 119,
+    "title": "PNG - Kavieng",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Kavieng.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Kavieng.pdf"
+  },
+  {
+    "id": 120,
+    "title": "PNG - Madang",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Madang.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Madang.pdf"
+  },
+  {
+    "id": 121,
+    "title": "PNG - Lorengau",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Lorengau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Lorengau.pdf"
+  },
+  {
+    "id": 122,
+    "title": "PNG - Arawa",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Arawa.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Arawa.pdf"
+  },
+  {
+    "id": 123,
+    "title": "PNG - Deception",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Deception.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Deception.pdf"
+  },
+  {
+    "id": 124,
+    "title": "PNG - Kimbe",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Kimbe.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Kimbe.pdf"
+  },
+  {
+    "id": 125,
+    "title": "PNG - Wewak",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Wewak.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Wewak.pdf"
+  },
+  {
+    "id": 126,
+    "title": "PNG - IHU",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/IHU.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/IHU.pdf"
+  },
+  {
+    "id": 127,
+    "title": "PNG - Daru",
+    "category": "PNG",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Daru.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/PNG/Daru.pdf"
+  },
+  {
+    "id": 128,
+    "title": "Solomon Islands - Ghizo",
+    "category": "Solomon_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Ghizo.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Ghizo.pdf"
+  },
+  {
+    "id": 129,
+    "title": "Solomon Islands - Honiara",
+    "category": "Solomon_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Honiara.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Honiara.pdf"
+  },
+  {
+    "id": 130,
+    "title": "Solomon Islands - Isabel",
+    "category": "Solomon_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Isabel.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Solomon Islands/Isabel.pdf"
+  },
+  {
+    "id": 131,
+    "title": "Cook Islands - Avatiu",
+    "category": "Cook_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Avatiu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Avatiu.pdf"
+  },
+  {
+    "id": 132,
+    "title": "Cook Islands - Arutanga",
+    "category": "Cook_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Arutanga.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Arutanga.pdf"
+  },
+  {
+    "id": 133,
+    "title": "Cook Islands - Penrhyn",
+    "category": "Cook_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Penrhyn.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Penrhyn.pdf"
+  },
+  {
+    "id": 134,
+    "title": "Cook Islands - Rarotonga",
+    "category": "Cook_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Rarotonga.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Cook Islands/Rarotonga.pdf"
+  },
+  {
+    "id": 135,
+    "title": "Marshall Islands - Kwajalein",
+    "category": "Marshall_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Marshall Islands/Kwajalein.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Marshall Islands/Kwajalein.pdf"
+  },
+  {
+    "id": 136,
+    "title": "Marshall Islands - Majuro",
+    "category": "Marshall_Islands",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Marshall Islands/Majuro.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Marshall Islands/Majuro.pdf"
+  },
+  {
+    "id": 137,
+    "title": "Nauru - Nauru",
+    "category": "Nauru",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Nauru/Nauru.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Nauru/Nauru.pdf"
+  },
+  {
+    "id": 138,
+    "title": "Noumea - Poindimie",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Poindimie.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Poindimie.pdf"
+  },
+  {
+    "id": 139,
+    "title": "Noumea - Noumea",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Noumea.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Noumea.pdf"
+  },
+  {
+    "id": 140,
+    "title": "Noumea - Mare",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Mare.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Mare.pdf"
+  },
+  {
+    "id": 141,
+    "title": "Noumea - Thio",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Thio.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Thio.pdf"
+  },
+  {
+    "id": 142,
+    "title": "Noumea - Kouaoua",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Kouaoua.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Kouaoua.pdf"
+  },
+  {
+    "id": 143,
+    "title": "Noumea - Poum",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Poum.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Poum.pdf"
+  },
+  {
+    "id": 144,
+    "title": "Noumea - Pine",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Pine.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Pine.pdf"
+  },
+  {
+    "id": 145,
+    "title": "Noumea - Nepoui",
+    "category": "Noumea",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Nepoui.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Noumea/Nepoui.pdf"
+  },
+  {
+    "id": 146,
+    "title": "Vanuatu - Luganville",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Luganville.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Luganville.pdf"
+  },
+  {
+    "id": 147,
+    "title": "Vanuatu - Port",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Port.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Port.pdf"
+  },
+  {
+    "id": 148,
+    "title": "Vanuatu - Pentecost",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Pentecost.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Pentecost.pdf"
+  },
+  {
+    "id": 149,
+    "title": "Vanuatu - Efate",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Efate.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Efate.pdf"
+  },
+  {
+    "id": 150,
+    "title": "Vanuatu - Aneityum",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Aneityum.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Aneityum.pdf"
+  },
+  {
+    "id": 151,
+    "title": "Vanuatu - Tanna",
+    "category": "Vanuatu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Tanna.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Vanuatu/Tanna.pdf"
+  },
+  {
+    "id": 152,
+    "title": "Tuvalu - Niulakita",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Niulakita.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Niulakita.pdf"
+  },
+  {
+    "id": 153,
+    "title": "Tuvalu - Nanumaga",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nanumaga.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nanumaga.pdf"
+  },
+  {
+    "id": 154,
+    "title": "Tuvalu - Nukufetau",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nukufetau.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nukufetau.pdf"
+  },
+  {
+    "id": 155,
+    "title": "Tuvalu - Nanumea",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nanumea.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nanumea.pdf"
+  },
+  {
+    "id": 156,
+    "title": "Tuvalu - Nui",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nui.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nui.pdf"
+  },
+  {
+    "id": 157,
+    "title": "Tuvalu - Niutao",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Niutao.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Niutao.pdf"
+  },
+  {
+    "id": 158,
+    "title": "Tuvalu - Vaitupu",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Vaitupu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Vaitupu.pdf"
+  },
+  {
+    "id": 159,
+    "title": "Tuvalu - Fongafale",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Fongafale.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Fongafale.pdf"
+  },
+  {
+    "id": 160,
+    "title": "Tuvalu - Nukulaelae",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nukulaelae.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Nukulaelae.pdf"
+  },
+  {
+    "id": 161,
+    "title": "Tuvalu - Funafuti",
+    "category": "Tuvalu",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Funafuti.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tuvalu/Funafuti.pdf"
+  },
+  {
+    "id": 162,
+    "title": "Tokelau - Nukunonu",
+    "category": "Tokelau",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tokelau/Nukunonu.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Tokelau/Nukunonu.pdf"
+  },
+  {
+    "id": 163,
+    "title": "Samoa - Apia",
+    "category": "Samoa",
+    "document": "waveclimate",
+    "year": "2023",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Samoa/Apia.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/waveclimate/2023/Samoa/Apia.pdf"
+  },
+  {
+    "id": 164,
+    "title": "Tokelau - Atafu",
+    "category": "Tokelau",
+    "document": "tidecalendar",
+    "year": "2025",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Atafu_Calendar_2025.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Atafu_Calendar_2025.pdf"
+  },
+  {
+    "id": 165,
+    "title": "Tokelau - Nukunonu",
+    "category": "Tokelau",
+    "document": "tidecalendar",
+    "year": "2025",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Nukunonu_Calendar_2025.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Nukunonu_Calendar_2025.pdf"
+  },
+  {
+    "id": 166,
+    "title": "Tokelau - Fakaofo",
+    "category": "Tokelau",
+    "document": "tidecalendar",
+    "year": "2025",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Fakaofo_Calendar_2025.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/pdfs/tidecalendar/2025/Tokelau_Fakaofo_Calendar_2025.pdf"
+  }
+  ]
