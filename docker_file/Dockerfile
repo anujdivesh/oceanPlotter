@@ -38,6 +38,7 @@ WORKDIR /usr/lib/app
 RUN pip3 install -r requirements.txt
 RUN chmod a+rwx /usr/lib/cgi-bin
 EXPOSE 80
+RUN a2enmod headers
 
 ENTRYPOINT [ "/usr/sbin/apache2" ]
 CMD ["-D", "FOREGROUND"]

@@ -8,3 +8,4 @@ services:
       - "8088:80"
     volumes:
       - /mnt/data/ocean_portal/config/oceanPlotter/cgi-bin:/usr/lib/cgi-bin
+      - /mnt/data/ocean_portal/config/oceanPlotter/docker_file/apache2.conf:/etc/apache2/apache2.conf
