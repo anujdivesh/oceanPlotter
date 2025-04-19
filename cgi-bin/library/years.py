@@ -3,7 +3,7 @@ import json
 
 # Create a list of year options
 years = [
-    {"value": "All", "name": "All"},
+    {"value": "All", "name": "All Years"},
     {"value": "2025", "name": "2025"},
     {"value": "2024", "name": "2024"},
     {"value": "2023", "name": "2023"}

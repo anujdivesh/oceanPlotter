@@ -4,6 +4,7 @@ import json
 
 # Create a dictionary of the countries
 countries = {
+    "All": "All Countries",
     "American_Samoa": "American Samoa",
     "Cook_Islands": "Cook Islands",
     "Fiji": "Fiji",
