@@ -4,46 +4,52 @@ import sys
 import urllib.parse
 import mimetypes
 
-print("Access-Control-Allow-Origin: *")
+def main():
+    try:
+        # 1. Get filename from query string
+        query = os.environ.get("QUERY_STRING", "")
+        params = urllib.parse.parse_qs(query)
+        filename = params.get("file", [""])[0].strip()
 
-# Get query string
-query = os.environ.get("QUERY_STRING", "")
-params = urllib.parse.parse_qs(query)
-filename = params.get("file", [None])[0]
+        # 2. Validate filename
+        if not filename or ".." in filename or filename.startswith('/'):
+            raise ValueError("Invalid filename")
 
-# Path validation
-if not filename or ".." in filename:
-    print("Content-Type: text/plain\n")
-    print("Invalid filename.")
-    sys.exit(1)
+        # 3. Secure file path resolution
+        root_dir = os.path.dirname(os.path.abspath(__file__))
+        safe_path = os.path.normpath(os.path.join(root_dir, filename))
+        
+        if not os.path.commonpath([safe_path, root_dir]) == os.path.normpath(root_dir):
+            raise ValueError("Access denied")
 
-# Root directory (change if needed)
-root_dir = os.path.dirname(os.path.realpath(__file__))  # Only allow serving from script dir
+        # 4. Check if file exists
+        if not os.path.isfile(safe_path):
+            raise FileNotFoundError("File not found")
 
-# Normalize the full path
-safe_path = os.path.normpath(os.path.join(root_dir, filename))
+        # 5. Get MIME type
+        mime_type = mimetypes.guess_type(safe_path)[0] or "application/octet-stream"
 
-# Ensure it's within the root directory
-if not safe_path.startswith(root_dir):
-    print("Content-Type: text/plain\n")
-    print("Access denied.")
-    sys.exit(1)
+        # 6. Send headers - CRITICAL: must complete before any binary data
+        sys.stdout.write(f"Content-Type: {mime_type}\n")
+        sys.stdout.write("Access-Control-Allow-Origin: *\n")
+        sys.stdout.write(f"Content-Length: {os.path.getsize(safe_path)}\n")
+        sys.stdout.write(f"Content-Disposition: inline; filename=\"{os.path.basename(safe_path)}\"\n")
+        sys.stdout.write("\n")  # REQUIRED blank line after headers
+        sys.stdout.flush()  # Ensure headers are sent
 
-# Check file exists
-if not os.path.isfile(safe_path):
-    print("Content-Type: text/plain\n")
-    print("File not found.")
-    sys.exit(1)
+        # 7. Send file content in binary mode
+        with open(safe_path, "rb") as f:
+            while True:
+                chunk = f.read(4096)  # Read in chunks
+                if not chunk:
+                    break
+                sys.stdout.buffer.write(chunk)
+        sys.stdout.flush()
 
-# Get MIME type
-mime_type, _ = mimetypes.guess_type(safe_path)
-if mime_type is None:
-    mime_type = "application/octet-stream"
+    except Exception as e:
+        sys.stdout.write("Content-Type: text/plain\n\n")
+        sys.stdout.write(f"Error: {str(e)}\n")
+        sys.exit(1)
 
-# Return file
-print(f"Content-Type: {mime_type}")
-print(f"Content-Disposition: inline; filename=\"{os.path.basename(safe_path)}\"")
-print("")  # blank line between headers and content
-
-with open(safe_path, "rb") as f:
-    sys.stdout.buffer.write(f.read())
+if __name__ == "__main__":
+    main()

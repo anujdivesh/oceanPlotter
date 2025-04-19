@@ -19,9 +19,6 @@ try:
     # Apply filters if parameters are provided
     filtered_docs = documents.copy()
     
-    # Check if document=tidecalendar is specifically requested
-    tide_calendar_requested = params.get('document', [''])[0].lower() == 'tidecalendar'
-    
     if 'category' in params:
         category_filter = params['category'][0]
         if category_filter != 'All':
@@ -30,21 +27,14 @@ try:
     if 'document' in params:
         document_filter = params['document'][0]
         if document_filter != 'All':
-            filtered_docs = [doc for doc in filtered_docs if doc['document'].lower() == document_filter.lower()]
+            filtered_docs = [doc for doc in filtered_docs if doc['document'] == document_filter]
     
     if 'year' in params:
         year_filter = params['year'][0]
         if year_filter != 'All':
-            filtered_docs = [doc for doc in filtered_docs if str(doc['year']) == year_filter]
-    elif tide_calendar_requested:
-        # If specifically requesting tide calendar with no year, return latest year
-        tide_calendars = [doc for doc in filtered_docs if doc['document'].lower() == 'tidecalendar']
-        if tide_calendars:
-            latest_year = max(doc['year'] for doc in tide_calendars)
-            filtered_docs = [doc for doc in tide_calendars if doc['year'] == latest_year]
-    
-    # Sort by year (descending) if not filtered by year
-    if 'year' not in params:
+            filtered_docs = [doc for doc in filtered_docs if doc['year'] == year_filter]
+    else:
+        # Sort by year (descending) only when no year filter is applied
         filtered_docs.sort(key=lambda x: x['year'], reverse=True)
     
     # Return the filtered results
