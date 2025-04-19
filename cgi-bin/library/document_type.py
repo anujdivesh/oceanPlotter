@@ -3,7 +3,7 @@ import json
 
 # Create a list of document types
 document_types = [
-    {"value": "All", "name": "All"},
+    {"value": "All", "name": "All Types"},
     {"value": "tidecalendar", "name": "Tide Calendar"},
     {"value": "waveclimate", "name": "Wave Climate Report"}
 ]
