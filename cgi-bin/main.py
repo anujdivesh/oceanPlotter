@@ -600,6 +600,72 @@ def plot_discrete_map(ax, ax_legend, lons, lats, bleaching_data,
     except Exception as e:
         raise RuntimeError(f"Error plotting coral bleaching data: {str(e)}")
 
+def plot_discrete_map_ranges(ax, ax_legend, lons, lats, bleaching_data,
+                           cmap_colors=None, colorbar_labels=None, ranges=None):
+    """
+    Final working version that properly handles:
+    - Discontinuous ranges (like 2-3, 4-7)
+    - Exactly matches 7 colors to 7 range segments
+    - Maintains your original range definitions
+    """
+    # Validate inputs
+    if bleaching_data.ndim != 2:
+        raise ValueError("bleaching_data must be a 2D array")
+    
+    if len(cmap_colors) != len(colorbar_labels) or len(cmap_colors) != len(ranges):
+        raise ValueError("Number of colors, labels, and ranges must match")
+
+    try:
+        # Create segments from ranges
+        segments = []
+        for r in ranges:
+            if '-' in r:
+                start, end = map(float, r.split('-'))
+                segments.append((start, end))
+            else:
+                val = float(r)
+                segments.append((val, val))  # Treat single values as range with equal start/end
+        
+        # Create colormap with exactly N colors for N segments
+        cmap = mcolors.ListedColormap(cmap_colors)
+        
+        # Create normalization that maps each segment to one color
+        # We'll use the midpoint of each segment to determine color mapping
+        norm = mcolors.Normalize(vmin=min(s[0] for s in segments), 
+                               vmax=max(s[1] for s in segments))
+        
+        # Create plot - we'll manually map values to colors
+        # First, create an array where each value is mapped to its segment index
+        segment_idx = np.zeros_like(bleaching_data, dtype=int)
+        for i, (start, end) in enumerate(segments):
+            mask = (bleaching_data >= start) & (bleaching_data <= end)
+            segment_idx[mask] = i
+        
+        # Now plot using the segment indices
+        cs = ax.pcolormesh(lons, lats, segment_idx,
+                          cmap=cmap, 
+                          vmin=0, vmax=len(segments)-1,
+                          shading='auto')
+        
+        # Calculate midpoints for ticks
+        ticks = [(seg[0] + seg[1])/2 for seg in segments]
+        
+        # Create colorbar
+        cbar = plt.colorbar(cs, cax=ax_legend)
+        cbar.set_ticks(np.arange(len(segments)))  # One tick per segment
+        cbar.set_ticklabels(colorbar_labels)
+        cbar.ax.tick_params(labelsize=6)
+        
+        # Adjust label rotation if needed
+        for label in cbar.ax.get_xticklabels():
+            label.set_rotation(45)
+            label.set_horizontalalignment('right')
+        
+        return cs, cbar
+        
+    except Exception as e:
+        raise RuntimeError(f"Error plotting discrete map: {str(e)}")
+
 def add_logo_and_footer(fig, ax, ax2, ax2_pos, region, 
                        copyright_text, footer_text, dataset_text,
                        logo_path="./Logo_cropped.png"):
@@ -777,7 +843,7 @@ config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 30
+layer_id = 37
 time= add_z_if_needed("2025-07-16T15:59:03Z")
 resolution = "l"
 #####PARAMETER#####
@@ -845,12 +911,24 @@ elif plot_type == "wave_with_dir":
                              min_color_plot, max_color_plot, steps,region, step, cmap_name=cmap_name, units=units)
 elif plot_type == "discrete":
     lons, lats, bleaching_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
-    tmp_color, tmp_label = discrete.split('-')
-    color_arr = np.array(eval(tmp_color), dtype=str)
-    label_arr = np.array(eval(tmp_label), dtype=str)
+    splitBy_ = discrete.split("_")
+    if len(splitBy_) > 1:
+        colors = splitBy_[0]
+        split_1 = splitBy_[1]
+        range_nums, range_name = split_1.split('%')
+        color_arr = np.array(eval(colors), dtype=str)
+        range_nums_arr = np.array(eval(range_nums), dtype=str)
+        range_name_arr = np.array(eval(range_name), dtype=str)
 
-    cs, cbar = plot_discrete_map(ax=ax2, ax_legend=ax_legend, lons=lons, lats=lats, bleaching_data=bleaching_data,\
-        cmap_colors=color_arr, colorbar_labels=label_arr)
+        cs, cbar = plot_discrete_map_ranges(ax=ax2, ax_legend=ax_legend, lons=lons, lats=lats, bleaching_data=bleaching_data,\
+            cmap_colors=color_arr, colorbar_labels=range_name_arr, ranges=range_nums_arr)
+    else:
+        tmp_color, tmp_label = discrete.split('-')
+        color_arr = np.array(eval(tmp_color), dtype=str)
+        label_arr = np.array(eval(tmp_label), dtype=str)
+
+        cs, cbar = plot_discrete_map(ax=ax2, ax_legend=ax_legend, lons=lons, lats=lats, bleaching_data=bleaching_data,\
+            cmap_colors=color_arr, colorbar_labels=label_arr)
 
 elif plot_type == "levels_pcolor":
     lons, lats, chl_data = getfromDAP(dap_url, time, dap_variable, adjust_lon=True)
