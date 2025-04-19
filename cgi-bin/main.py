@@ -303,8 +303,8 @@ def get_dap_config(layer_map_data):
     dap_url = layer_map_data.url.replace("wms", "dodsC")
     dap_variable = layer_map_data.layer_name
     dapvaribsplit = dap_variable.split(',')
-    if len(dapvaribsplit) >= 1:
-        dap_variable = dapvaribsplit[0]
+    #if len(dapvaribsplit) >= 1:
+    #    dap_variable = dapvaribsplit[0]
     return dap_url, dap_variable
 
 def get_title(layer_map_data,time):
