@@ -96,7 +96,12 @@ else:
         cb.set_label(unit, labelpad=10)
         plt.savefig(fname, bbox_inches='tight', pad_inches=0.1, dpi=200, facecolor='white')
         plt.close()
-        exit()
+        length = os.stat(fname).st_size
+        sys.stdout.write("Content-Type: image/png\n")
+        sys.stdout.write("Content-Length: " + str(length) + "\n")
+        sys.stdout.write("\n")
+        sys.stdout.flush()
+        sys.stdout.buffer.write(open(fname, "rb").read())
 
     # Create discrete colormap for categorical data
     cmap = ListedColormap(colors)
