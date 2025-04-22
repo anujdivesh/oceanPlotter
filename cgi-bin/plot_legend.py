@@ -79,8 +79,8 @@ else:
     else:
         # Standard continuous colorbar
         cmap = getattr(plt.cm, color)
-        norm = mpl.colors.Normalize(vmin=min_color, vmax=max_color)
-        ticks = np.arange(min_color, max_color + step/2, step)
+        norm = mpl.colors.Normalize(vmin=float(min_color), vmax=float(max_color))
+        ticks = np.arange(float(min_color), float(max_color) + float(step)/2, float(step))
         
         cb = mpl.colorbar.ColorbarBase(
             ax,
@@ -142,7 +142,7 @@ else:
             dpi=300, 
             facecolor='white')
     plt.close()
-    
+
     length = os.stat(fname).st_size
 
     sys.stdout.write("Content-Type: image/png\n")

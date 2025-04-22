@@ -9,8 +9,8 @@ from matplotlib.colors import ListedColormap
 
 
 # Standard colorbar parameters (used when mode='standard')
-mode = 'decile'  # Options: 'coral_bleaching', 'marine_heat_wave', 'decile', 'standard'
-min_color = -2
+mode = 'standard'  # Options: 'coral_bleaching', 'marine_heat_wave', 'decile', 'standard'
+min_color = float('-2')
 max_color = 2
 step = 0.5
 color = 'jet'
