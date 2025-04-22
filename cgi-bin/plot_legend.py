@@ -94,9 +94,8 @@ else:
         # Corrected this line - using set_ticklabels instead of set_xticklabels
         cb.set_ticklabels([f'{tick:g}' for tick in ticks])
         cb.set_label(unit, labelpad=10)
-        plt.savefig('alegend.png', bbox_inches='tight', pad_inches=0.1, dpi=200, facecolor='white')
+        plt.savefig(fname, bbox_inches='tight', pad_inches=0.1, dpi=200, facecolor='white')
         plt.close()
-        print(f"Standard colorbar using '{color}' colormap saved as 'alegend.png'")
         exit()
 
     # Create discrete colormap for categorical data
