@@ -182,6 +182,76 @@ def getfromDAP(url, target_time, variable_name, adjust_lon=False):
     except Exception as e:
         raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
 
+def get_from_file(file_path, target_time, variable_name, adjust_lon=False):
+    try:
+        # Open dataset from local file
+        with xr.open_dataset(file_path, engine='netcdf4', mask_and_scale=True, decode_cf=True) as ds:
+            
+            # Get available times (handle bytes if needed)
+            if isinstance(ds.time.values[0], bytes):
+                time_str = [t.decode('utf-8') for t in ds.time.values]
+                time_dt = np.array([datetime.strptime(t, "%Y-%m-%dT%H:%M:%SZ") for t in time_str])
+            else:
+                # Convert numpy datetime64 to datetime objects if needed
+                time_dt = [pd.to_datetime(t).to_pydatetime() for t in ds.time.values]
+            
+            # Convert target time to datetime object
+            target_dt = datetime.strptime(target_time, "%Y-%m-%dT%H:%M:%SZ")
+            
+            # Find closest time by comparing timestamps
+            time_index = np.argmin([abs((t - target_dt).total_seconds()) for t in time_dt])
+            
+            # Extract variable data
+            if variable_name not in ds.variables:
+                available_vars = list(ds.variables.keys())
+                raise ValueError(f"Variable '{variable_name}' not found. Available variables: {available_vars}")
+            
+            data = ds[variable_name].isel(time=time_index)
+            
+            # If variable has 3 dimensions (e.g., depth), select first depth level
+            if len(data.dims) == 3:
+                data = data.isel({data.dims[0]: 0})  # Select first index of first dimension
+            
+            # Determine coordinate names
+            coord_names = {
+                'lon': ['lon', 'longitude', 'x', 'X'],
+                'lat': ['lat', 'latitude', 'y', 'Y']
+            }
+            
+            # Find longitude coordinate
+            lon_name = None
+            for possible_name in coord_names['lon']:
+                if possible_name in ds.coords:
+                    lon_name = possible_name
+                    break
+            if lon_name is None:
+                raise ValueError("Could not identify longitude coordinate variable")
+            
+            # Find latitude coordinate
+            lat_name = None
+            for possible_name in coord_names['lat']:
+                if possible_name in ds.coords:
+                    lat_name = possible_name
+                    break
+            if lat_name is None:
+                raise ValueError("Could not identify latitude coordinate variable")
+            
+            # Get coordinates
+            lon = ds[lon_name].values
+            lat = ds[lat_name].values
+            
+            # Adjust longitude if requested (for 180° crossing)
+            if adjust_lon:
+                if np.any(lon < 0):  # Only adjust if there are negative longitudes
+                    lon = np.where(lon < 0, lon + 360, lon)
+            
+            # Extract and mask data values
+            data_extract = np.ma.masked_invalid(data.values.squeeze())
+            
+            return lon, lat, data_extract
+            
+    except Exception as e:
+        raise RuntimeError(f"Error accessing file data: {str(e)}")
 def getCountryData(country_id):
     # Fetch bounding box data from API
     region_url_prefix = "https://ocean-middleware.spc.int/middleware/api/country/"
@@ -843,15 +913,15 @@ config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 37
-time= add_z_if_needed("2025-07-16T15:59:03Z")
+layer_id = 26
+time= add_z_if_needed("2024-10-01T00:00:00Z")
 resolution = "l"
 #####PARAMETER#####
 
 layer_map_data = fetch_wms_layer_data(layer_id)
 
 #REMOVE DEMO
-time = demo_time(layer_map_data)
+#time = demo_time(layer_map_data)
 #REMOVE DEMO
 #####MAIN#####
 dap_url, dap_variable = get_dap_config(layer_map_data)
@@ -887,6 +957,7 @@ ax_legend = fig.add_axes([ax2_pos.x1 +0.02, ax2_pos.y0, ax_legend_width, ax2_pos
 ##MAIN PLOTTER
 if plot_type == "contourf":
     lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
+    #lon, lat, data_extract = get_from_file('cmems_obs-sl_glo_phy-ssh_nrt_allsat-l4-duacs-0.125deg_P1D_202411_202411.nc', time, dap_variable,adjust_lon=True)
     cs, cbar = plot_filled_contours(ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
         min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
     )
