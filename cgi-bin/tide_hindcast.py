@@ -127,15 +127,15 @@ ax.set_ylim([min(df["Minimum"].min(), df["Mean_Trend"].min()) * 0.98,
 ax.set_xlabel("Year")
 ax.set_ylabel("Sea Level (m)")
 ax.legend()
-ax.set_title("Monthly Sea Level (Mean, Max, Min) with Mean Trend \n %s - %s" % (country_name, location))
+ax.set_title("Relative Sea Level (Mean, Max, Min) with Mean Trend \n %s - %s" % (country_name, location))
 ax.grid(True)
 
 logo = Image.open(logo_url)
 logo = logo.resize((440, 150))
 ax2_pos = ax.get_position()
-ax_logo = fig.add_axes([0.07, ax2_pos.y1 - 0.02, 0.13, 0.15])  # Adjust the y-position slightly above ax2
-ax_logo.imshow(logo)
-ax_logo.axis('off')  
+#ax_logo = fig.add_axes([0.07, ax2_pos.y1 - 0.02, 0.13, 0.15])  # Adjust the y-position slightly above ax2
+#ax_logo.imshow(logo)
+#ax_logo.axis('off')  
 
 ax.text(-0.08, ax2_pos.y0-0.17,copyright_text, transform=ax.transAxes,fontsize=7, verticalalignment='top')
 ax.text(-0.08, ax2_pos.y0-0.195,footer_text, transform=ax.transAxes,fontsize=7, verticalalignment='top')

@@ -232,6 +232,64 @@ def plot_coastline_from_shapefile(ax, shapefile_path):
     except Exception as e:
         print(f"Error plotting coastline from shapefile: {str(e)}")
 
+def plot_coastline_from_geoserver(ax, style='polygon'):
+    """
+    Plot coastline polygons from GeoServer WFS with proper dateline handling
+    
+    Parameters:
+    - ax: matplotlib axis object
+    - geoserver_url: Base URL of GeoServer (e.g., 'http://localhost:8080/geoserver')
+    - layer_name: Name of the coastline layer (e.g., 'coastline')
+    - workspace: GeoServer workspace (default: 'naturalearth')
+    - style: 'polygon' for filled polygons or 'line' for just boundaries
+    """
+    try:
+        # Construct WFS request URL
+        wfs_url = "https://opmgeoserver.gem.spc.int/geoserver/spc/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=spc:Pacific_Coastlines_openstreet_polygon&srsName=EPSG:4326&outputFormat=application/json"
+        # Read data directly from GeoServer
+        gdf = gpd.read_file(wfs_url)
+        
+        # Ensure correct CRS (EPSG:4326)
+        if gdf.crs is None:
+            gdf = gdf.set_crs('EPSG:4326', allow_override=True)
+        else:
+            gdf = gdf.to_crs('EPSG:4326')
+        
+        # Simplify complex geometries (adjust tolerance as needed)
+        gdf['geometry'] = gdf['geometry'].simplify(tolerance=0.01)
+        
+        # Plot with dateline handling
+        for geom in gdf.geometry:
+            if not geom.is_valid:
+                geom = geom.buffer(0)  # Fix invalid geometries
+                
+            if geom.geom_type in ['Polygon', 'MultiPolygon']:
+                # Create two versions - original and shifted by 360°
+                original = gpd.GeoSeries([geom], crs='EPSG:4326')
+                shifted = original.translate(xoff=360)
+                
+                # Combine both versions
+                combined = pd.concat([original, shifted])
+                
+                # Plot each geometry
+                for poly in combined:
+                    if poly.geom_type == 'Polygon':
+                        x, y = m(poly.exterior.coords.xy[0], poly.exterior.coords.xy[1])
+                        if style == 'polygon':
+                            ax.fill(x, y, color='#A9A9A9', ec='black', lw=0.5, zorder=2)
+                        else:
+                            ax.plot(x, y, color='black', lw=0.5, zorder=2)
+                    elif poly.geom_type == 'MultiPolygon':
+                        for part in poly.geoms:
+                            x, y = m(part.exterior.coords.xy[0], part.exterior.coords.xy[1])
+                            if style == 'polygon':
+                                ax.fill(x, y, color='#A9A9A9', ec='black', lw=0.5, zorder=2)
+                            else:
+                                ax.plot(x, y, color='black', lw=0.5, zorder=2)
+        
+    except Exception as e:
+        print(f"Error plotting coastline from GeoServer: {str(e)}")
+
 def get_from_file(file_path, target_time, variable_name, adjust_lon=False):
     try:
         # Open dataset from local file
@@ -1466,7 +1524,7 @@ m.drawcoastlines(linewidth=0.3)
 m.fillcontinents(color='#A9A9A9', lake_color='white')
 m.drawcountries()
 
-plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
+plot_coastline_from_geoserver(ax2)
 plot_city_names(ax2,m,short_name)
 
 plt.savefig('anuj3.png', bbox_inches='tight', pad_inches=0.1,dpi=150)
