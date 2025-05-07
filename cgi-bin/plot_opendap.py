@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import sys, os
+os.environ['MPLCONFIGDIR'] = '/tmp' 
 import json
 import requests
 import numpy as np
@@ -10,7 +12,6 @@ import geopandas as gpd
 import sys
 from datetime import datetime
 from io import BytesIO
-import sys, os
 import io
 import xarray as xr
 from matplotlib.colors import BoundaryNorm
