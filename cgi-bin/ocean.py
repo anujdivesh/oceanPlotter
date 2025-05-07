@@ -1130,7 +1130,8 @@ else:
 
     m = Basemap(projection='cyl', llcrnrlat=south_bound, urcrnrlat=north_bound, 
                 llcrnrlon=west_bound, urcrnrlon=east_bound, resolution=resolution, ax=ax2)
-
+    print(region)
+    sys.exit()
     plot_map_grid(m, south_bound, north_bound, west_bound, east_bound,region)
 
     # Add colorbar to ax2

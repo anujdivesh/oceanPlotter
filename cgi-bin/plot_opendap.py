@@ -993,9 +993,9 @@ def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound,region):
     lat_span = north_bound - south_bound
     lon_span = east_bound - west_bound
 
-    if region == 1:
+    if int(region) == 1:
          spacing = 20
-    elif region == 6 or region == 22:
+    elif int(region) == 6 or int(region) == 22:
         spacing = 4
     else:
         spacing = 2
