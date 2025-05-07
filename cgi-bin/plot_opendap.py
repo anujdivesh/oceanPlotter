@@ -1235,7 +1235,7 @@ else:
     plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
     plot_city_names(ax2,m,short_name)
 
-    plt.savefig(output_filename,  dpi=300, bbox_inches='tight', pad_inches=0.1, dpi=150)
+    plt.savefig(output_filename,  dpi=300, bbox_inches='tight', pad_inches=0.1)
 
     length = os.stat(output_filename).st_size
     sys.stdout.write("Content-Type: image/png\n")
