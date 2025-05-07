@@ -1233,8 +1233,8 @@ else:
     m.drawcoastlines(linewidth=0.3)
     m.fillcontinents(color='#A9A9A9', lake_color='white')
     m.drawcountries()
-    plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
-    plot_city_names(ax2,m,short_name)
+    #plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
+    #plot_city_names(ax2,m,short_name)
 
     plt.savefig(output_filename,  dpi=300, bbox_inches='tight', pad_inches=0.1)
 
