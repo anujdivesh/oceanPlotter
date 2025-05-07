@@ -902,9 +902,9 @@ def plot_current_magnitude(ax, ax_legend, lon, lat, uo, vo, region,
     v_scaled = vo * scale_factor
 
     # Define a slice to skip drawing some of the quiver arrows to reduce clutter
-    if region == 1:
+    if int(region) == 1:
         skip = (slice(None, None, 30), slice(None, None, 30))
-    elif region == 5 or region == 11:
+    elif int(region) == 5 or int(region) == 11:
         skip = (slice(None, None, 10), slice(None, None, 10))
     else:
         skip = (slice(None, None, 5), slice(None, None, 5))
@@ -1234,7 +1234,7 @@ else:
     m.fillcontinents(color='#A9A9A9', lake_color='white')
     m.drawcountries()
     #plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
-    #plot_city_names(ax2,m,short_name)
+    plot_city_names(ax2,m,short_name)
 
     plt.savefig(output_filename,  dpi=300, bbox_inches='tight', pad_inches=0.1)
 
