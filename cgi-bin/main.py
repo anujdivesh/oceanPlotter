@@ -23,6 +23,8 @@ from owslib.wms import WebMapService
 import matplotlib.colors as mcolors
 import netCDF4 as nc
 from matplotlib.lines import Line2D
+from matplotlib.colors import Normalize
+from dateutil.relativedelta import relativedelta
 #####FUNCTIONS#####
 def fetch_wms_layer_data(layer_id):
     try:
@@ -182,6 +184,54 @@ def getfromDAP(url, target_time, variable_name, adjust_lon=False):
     except Exception as e:
         raise RuntimeError(f"Error accessing OpenDAP data: {str(e)}")
 
+def plot_coastline_from_shapefile(ax, shapefile_path):
+    """
+    Plot coastline polygons from local shapefile with proper dateline handling
+    
+    Parameters:
+    - ax: matplotlib axis object
+    - shapefile_path: path to the shapefile (without .shp extension)
+    """
+    try:
+        # Read shapefile using geopandas
+        gdf = gpd.read_file(shapefile_path)
+        
+        # Ensure correct CRS (EPSG:4326)
+        if gdf.crs is None:
+            gdf = gdf.set_crs('EPSG:4326', allow_override=True)
+        else:
+            gdf = gdf.to_crs('EPSG:4326')
+        
+        # Simplify complex geometries (adjust tolerance as needed)
+        gdf['geometry'] = gdf['geometry'].simplify(tolerance=0.01)
+        
+        # Plot with dateline handling
+        for geom in gdf.geometry:
+            if not geom.is_valid:
+                geom = geom.buffer(0)  # Fix invalid geometries
+                
+            if geom.geom_type in ['Polygon', 'MultiPolygon']:
+                # Create two versions - original and shifted by 360°
+                original = gpd.GeoSeries([geom], crs='EPSG:4326')
+                shifted = original.translate(xoff=360)
+                
+                # Combine both versions
+                combined = pd.concat([original, shifted])
+                
+                # Plot each geometry
+                for poly in combined:
+                    if poly.geom_type == 'Polygon':
+                        x, y = m(poly.exterior.coords.xy[0], poly.exterior.coords.xy[1])
+                        ax.fill(x, y, color='#A9A9A9', ec='black', lw=0.5, zorder=2)
+                    elif poly.geom_type == 'MultiPolygon':
+                        for part in poly.geoms:
+                            x, y = m(part.exterior.coords.xy[0], part.exterior.coords.xy[1])
+                            ax.fill(x, y, color='#A9A9A9', ec='black', lw=0.5, zorder=2)
+        
+        
+    except Exception as e:
+        print(f"Error plotting coastline from shapefile: {str(e)}")
+
 def get_from_file(file_path, target_time, variable_name, adjust_lon=False):
     try:
         # Open dataset from local file
@@ -252,6 +302,7 @@ def get_from_file(file_path, target_time, variable_name, adjust_lon=False):
             
     except Exception as e:
         raise RuntimeError(f"Error accessing file data: {str(e)}")
+
 def getCountryData(country_id):
     # Fetch bounding box data from API
     region_url_prefix = "https://ocean-middleware.spc.int/middleware/api/country/"
@@ -265,7 +316,7 @@ def getCountryData(country_id):
     else:
         print(f"Failed to retrieve bounding box data. Status code: {response.status_code}")
     if name == "PAC":
-        name = "pacific_eez"
+        name = "PAC_EEZ_v3"
     eez_url = "https://opmgeoserver.gem.spc.int/geoserver/spc/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=spc:{layername}&srsName=EPSG:4326&outputFormat=application/json"
     formatted_url = eez_url.format(layername=name)
     return formatted_url
@@ -284,10 +335,11 @@ def getBBox(country_id):
         south_bound = data['south_bound_latitude']
         north_bound = data['north_bound_latitude']
         country_name = data['long_name']
+        short_name = data['short_name']
     else:
         print(f"Failed to retrieve bounding box data. Status code: {response.status_code}")
     
-    return west_bound, east_bound, south_bound, north_bound, country_name
+    return west_bound, east_bound, south_bound, north_bound, country_name,short_name
 
 def getEEZ(ax,geojson_url):
     geojson_response = requests.get(geojson_url)
@@ -313,7 +365,7 @@ def getEEZ(ax,geojson_url):
                     x = np.where(x < 0, x + 360, x)  # For longitudes < 0 (e.g., -170°), shift to +180°
                     
                     # Plot the boundary line
-                    ax.plot(x, y, marker=None, color='black', linewidth=0.5,linestyle='--')  # Plot the boundary line
+                    ax.plot(x, y, marker=None, color='black', linewidth=1,linestyle='--')  # Plot the boundary line
 
     else:
         print("Failed to retrieve the GeoJSON data.")
@@ -383,6 +435,7 @@ def get_title(layer_map_data,time):
     date = datetime.strptime(add_z_if_needed(time), "%Y-%m-%dT%H:%M:%SZ")
     date2 = date.strftime("%Y-%m-%dT%H%M%SZ")
     formatted_date = date.strftime("%-d %B %Y")
+    orig_name = layer_map_data.get_map_names
     if "{week}" in layer_map_data.get_map_names:
         spec = layer_map_data.specific_timestemps
         specsplit = spec.split(',')
@@ -407,6 +460,24 @@ def get_title(layer_map_data,time):
         else:
             title_suffix = "%s: %s" % (layer_map_data.get_map_names[0],formatted_date)
         dataset_text = layer_map_data.get_map_names[2]
+    if "{week}" not in orig_name:
+        if '{' in layer_map_data.get_map_names[0] and '}' in layer_map_data.get_map_names[0]:
+            if "Anomalies" in layer_map_data.get_map_names[0]:
+                cleaned = layer_map_data.get_map_names[0].replace('{', '').replace('}', '')
+                formatted_date = date.strftime(layer_map_data.get_map_names[1])
+                date_str = layer_map_data.get_map_names[1]
+                start_date = date
+                end_date = start_date - relativedelta(months=2)
+                formatted_range = f"{end_date.strftime('%b %Y')} - {start_date.strftime('%b %Y')}"
+                title_suffix = "%s : %s" % (cleaned, formatted_range)
+            else:    
+                cleaned = layer_map_data.get_map_names[0].replace('{', '').replace('}', '')
+                formatted_date = date.strftime(layer_map_data.get_map_names[1])
+                date_str = layer_map_data.get_map_names[1]
+                start_date = date
+                end_date = start_date + relativedelta(months=2)
+                formatted_range = f"{start_date.strftime('%b')} - {end_date.strftime('%b %Y')}"
+                title_suffix = "%s : %s" % (cleaned, formatted_range)
 
     return title_suffix, dataset_text
 
@@ -575,6 +646,7 @@ def plot_filled_pcolor(ax, ax_legend, lon, lat, data,
     
     return pc, cbar
 
+"""
 def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
                    min_color_plot, max_color_plot, steps,region,step,
                    cmap_name='jet', units='m',
@@ -613,6 +685,63 @@ def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
     
     # Create directional arrows
     theta = np.radians(wave_dir)
+    u_arrows = arrow_scale * np.sin(theta)
+    v_arrows = arrow_scale * np.cos(theta)
+    
+    q = ax.quiver(x[::step, ::step], y[::step, ::step], 
+                u_arrows[::step, ::step], v_arrows[::step, ::step],
+                scale=scale, width=0.003, 
+                headwidth=2.5, headlength=3, headaxislength=2.5,
+                color='black', pivot='middle', minshaft=2,
+                edgecolor='black', linewidth=0.3)
+    
+    # Add quiver key (without text)
+    qk = plt.quiverkey(q, 0.82, 0.12, 1, 
+                     '', labelpos='E',
+                     coordinates='axes', fontproperties={'size': 9},
+                     labelsep=0.05, labelcolor='black')
+    cbar.ax.tick_params(labelsize=6)
+    
+    return cs, q, cbar
+"""
+def plot_wave_field(ax, ax_legend, m, lon, lat, wave_height, wave_dir,
+                   min_color_plot, max_color_plot, steps, region, step,
+                   cmap_name='jet', units='m',
+                   scale=30, arrow_scale=0.5):
+    
+    # Convert wave direction to components (add 180° to reverse direction)
+    wave_dir_rad = np.radians(wave_dir + 180)  # Reverse direction for quiver plot
+    u = wave_height * np.sin(wave_dir_rad)  # Eastward component
+    v = wave_height * np.cos(wave_dir_rad)  # Northward component
+    
+    # Create grid coordinates
+    x, y = m(*np.meshgrid(lon, lat))
+    
+    # Create levels and normalization
+    levels = np.arange(min_color_plot, max_color_plot, steps)
+    norm = BoundaryNorm(levels, ncolors=256)
+    
+    # Plot wave height field
+    cs = ax.pcolormesh(
+        x, y, wave_height,
+        cmap=cmap_name,
+        norm=norm,
+        shading='auto'
+    )
+    
+    # Create colorbar in specified legend axes
+    cbar = plt.colorbar(cs, cax=ax_legend)
+    cbar.set_label(
+        units,
+        fontsize=8,
+        rotation=0,
+        va='center',
+        ha='left',
+        labelpad=1
+    )
+    
+    # Create directional arrows (already corrected by +180 above)
+    theta = wave_dir_rad  # Use the already corrected direction
     u_arrows = arrow_scale * np.sin(theta)
     v_arrows = arrow_scale * np.cos(theta)
     
@@ -851,16 +980,279 @@ def plot_levels_contour(ax, ax_legend, lons, lats, chl_data, cmap_name='jet',
     cbar.ax.tick_params(labelsize=7)
     
     return mesh, cbar
+"""
+def plot_current_magnitude(ax, ax_legend, lon, lat, uo, vo, 
+                           min_color_plot=None, max_color_plot=None, steps=None,
+                           cmap_name='viridis', units='(m/s)',
+                           show_arrows=True, arrow_size=0.5, density=5,
+                           arrow_color='k', **kwargs):
+    
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib.colors import BoundaryNorm
+
+    # Handle coordinate arrays
+    if lon.ndim == 1 or lat.ndim == 1:
+        lon, lat = np.meshgrid(lon, lat)
+    
+    # Compute current magnitude
+    speed = np.sqrt(uo**2 + vo**2)
+
+    # Set up color normalization
+    if all(v is not None for v in [min_color_plot, max_color_plot, steps]):
+        levels = np.linspace(min_color_plot, max_color_plot,
+                             int((max_color_plot - min_color_plot) / steps) + 1)
+        norm = BoundaryNorm(levels, ncolors=256)
+    else:
+        norm = None
+        levels = None
+
+    # Create colormap
+    cmap = plt.get_cmap(cmap_name)
+
+    # Plot scalar field
+    pcm = ax.pcolormesh(lon, lat, speed, cmap=cmap, norm=norm, shading='auto', **kwargs)
+
+    # Optional uniform arrows
+    quiv = None
+    if show_arrows:
+        # Subsample for clarity
+        skip = (slice(None, None, density), slice(None, None, density))
+        lon_sub = lon[skip]
+        lat_sub = lat[skip]
+        uo_sub = uo[skip]
+        vo_sub = vo[skip]
+
+        # Normalize vectors
+        mag = np.sqrt(uo_sub**2 + vo_sub**2)
+        with np.errstate(divide='ignore', invalid='ignore'):
+            uo_unit = np.divide(uo_sub, mag, out=np.zeros_like(uo_sub), where=mag!=0)
+            vo_unit = np.divide(vo_sub, mag, out=np.zeros_like(vo_sub), where=mag!=0)
+
+        # Plot uniform arrows
+        quiv = ax.quiver(
+            lon_sub, lat_sub,
+            uo_unit, vo_unit,                  # Uniform unit vectors
+            scale_units='xy',                  # Scale arrows in data units
+            scale=1.0 / arrow_size,            # Directly control arrow length
+            width=0.005,                       # Shaft thickness
+            headwidth=3.5,                     # Arrowhead width
+            headlength=4.5,                    # Arrowhead length
+            headaxislength=4.0,                # Head base to tip
+            minlength=0.1,                     # Ensure arrows are visible
+            color=arrow_color
+        )
 
 
-def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound):
+
+
+    # Colorbar
+    cbar = plt.colorbar(pcm, cax=ax_legend)
+    if levels is not None:
+        cbar.set_ticks(levels)
+    cbar.ax.tick_params(labelsize=7)
+    cbar.set_label(units, fontsize=6, rotation=0,
+                   va='center', ha='left', labelpad=1)
+
+    return pcm, quiv, cbar
+"""
+
+def plot_current_magnitude(ax, ax_legend, lon, lat, uo, vo, region,
+                           min_color_plot=None, max_color_plot=None, steps=None,
+                           cmap_name='viridis', units='(m/s)',
+                           show_arrows=True, arrow_scale=1.0, density=5,
+                           arrow_color='k', min_speed=0.01, **kwargs):
+
+    # Handle coordinate arrays
+    if lon.ndim == 1 or lat.ndim == 1:
+        lon, lat = np.meshgrid(lon, lat)
+    
+    # Compute current magnitude
+    speed = np.sqrt(uo**2 + vo**2)
+
+    # Set up color normalization
     """
-    Draw latitude/longitude grid lines with:
-    - 6 latitude divisions
-    - 5 longitude divisions
+    if all(v is not None for v in [min_color_plot, max_color_plot, steps]):
+        levels = np.linspace(min_color_plot, max_color_plot,
+                             int((max_color_plot - min_color_plot) / steps) + 1)
+        norm = BoundaryNorm(levels, ncolors=256)
+    else:
+        norm = None
+        levels = None
+    """
+    levels = [0.05, 0.1, 0.15, 0.2,0.25, 0.3,0.35, 0.4,0.45, 0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0]
+    norm = BoundaryNorm(levels, ncolors=256)
+
+    # Create colormap
+    cmap = plt.get_cmap(cmap_name)
+    #norm = Normalize(vmin=0.0, vmax=1.5)
+    #levels = None
+    levels = np.arange(0.0, 1.5 + 0.05, 0.05)  # Ensures 1.5 is included
+
+    # Use BoundaryNorm for discrete color steps
+    norm = BoundaryNorm(levels, ncolors=cmap.N, clip=True)
+
+
+    # Plot scalar field
+    pcm = ax.pcolormesh(lon, lat, speed, cmap=cmap, norm=norm, shading='auto', **kwargs)
+
+    scale_factor = 0.08  # Adjust this factor to control the arrow size
+    u_scaled = uo * scale_factor
+    v_scaled = vo * scale_factor
+
+    # Define a slice to skip drawing some of the quiver arrows to reduce clutter
+    if region == 1:
+        skip = (slice(None, None, 30), slice(None, None, 30))
+    elif region == 5 or region == 11:
+        skip = (slice(None, None, 10), slice(None, None, 10))
+    else:
+        skip = (slice(None, None, 5), slice(None, None, 5))
+
+    # Use the quiver function to display current vectors with their direction and intensity
+    quiv = ax.quiver(lon[skip], lat[skip], u_scaled[skip], v_scaled[skip], color='black', scale=2, width=0.003, headwidth=4)
+
+
+    # Enhanced arrow plotting
+    #quiv = None
+    """
+    if show_arrows:
+        # Subsample for clarity
+        skip = (slice(None, None, density), slice(None, None, density))
+        lon_sub = lon[skip]
+        lat_sub = lat[skip]
+        uo_sub = uo[skip]
+        vo_sub = vo[skip]
+        speed_sub = speed[skip]
+        
+        # Filter weak currents
+        mask = speed_sub >= min_speed
+        lon_sub = lon_sub[mask]
+        lat_sub = lat_sub[mask]
+        uo_sub = uo_sub[mask]
+        vo_sub = vo_sub[mask]
+        speed_sub = speed_sub[mask]
+        
+        # Automatic scaling if arrow_scale=None
+        if arrow_scale is None:
+            arrow_scale = 50 / speed_sub.mean() if speed_sub.mean() > 0 else 1.0
+        
+        # Arrow coloring
+        arrow_coloring = speed_sub if arrow_color == 'magnitude' else arrow_color
+        
+        # Plot scaled arrows
+        quiv = ax.quiver(
+            lon_sub, lat_sub,
+            uo_sub, vo_sub,
+            scale=2,            # Inverse relationship with scale
+            scale_units='inches',             # Better for geographic plots
+            width=0.003,                     # Shaft thickness
+            headwidth=4,                      # Arrowhead width
+            headlength=4,                      # Arrowhead length
+            headaxislength=3.5,               # Head base to tip
+            minlength=0.5,                     # Minimum arrow length
+            color=arrow_coloring,
+            pivot='mid',                       # Arrows centered on points
+            angles='xy',                       # Proper geographic angles
+            zorder=5                           # Draw above pcolormesh
+        )
+        
+        # Add reference arrow if using magnitude scaling
+        if arrow_color != 'magnitude' and len(speed_sub) > 0:
+            median_speed = np.median(speed_sub)
+            ax.quiverkey(quiv, 0.85, 0.05, median_speed, 
+                        f'{median_speed:.2f} m/s', 
+                        coordinates='axes',
+                        labelpos='E')
+    """
+    # Colorbar
+    cbar = plt.colorbar(pcm, cax=ax_legend)
+    label_step = 0.1  # Adjust to control label frequency (e.g., 0.2 for even fewer)
+    selected_ticks = np.arange(levels[0], levels[-1] + label_step, label_step)
+    cbar.set_ticks(selected_ticks)  
+    cbar.ax.tick_params(labelsize=7)
+    cbar.set_label(units, fontsize=6, rotation=0, va='center', ha='left', labelpad=1)
+    
+    #cbar = plt.colorbar(pcm, cax=ax_legend)
+    #if levels is not None:
+    #    cbar.set_ticks(levels)
+    #cbar.ax.tick_params(labelsize=7)
+    #cbar.set_label(units, fontsize=6, rotation=0,va='center', ha='left', labelpad=1)
+
+    return pcm, quiv, cbar
+
+def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound,region):
+    """
+    Draw latitude/longitude grid lines with automatic spacing:
+    - Uses 2° spacing for small plots, larger spacing for bigger plots
+    - Doesn't start/end exactly at the edges
     - Labels only on left (lat) and bottom (lon)
     - Clean single degree symbols
     """
+    # Calculate plot dimensions
+    lat_span = north_bound - south_bound
+    lon_span = east_bound - west_bound
+
+    if region == 1:
+         spacing = 20
+    elif region == 6 or region == 22:
+        spacing = 4
+    else:
+        spacing = 2
+    
+    # Calculate grid lines (not starting exactly at edges)
+    # Round bounds outward to nearest spacing multiple
+    def round_outward(value, step):
+        return np.floor(value / step) * step if value >= 0 else np.ceil(value / step) * step
+    
+    first_parallel = round_outward(south_bound + 0.5, spacing)
+    last_parallel = round_outward(north_bound - 0.5, spacing)
+    first_meridian = round_outward(west_bound + 0.5, spacing)
+    last_meridian = round_outward(east_bound - 0.5, spacing)
+    
+    parallels = np.arange(first_parallel, last_parallel + spacing, spacing)
+    meridians = np.arange(first_meridian, last_meridian + spacing, spacing)
+    
+    # Draw primary grid lines
+    m.drawparallels(parallels,
+                    labels=[1, 0, 0, 0],
+                    fmt='%.0f',  # Directly include degree symbol
+                    fontsize=6,
+                    color='grey',
+                    linewidth=0.5,
+                    dashes=[1, 1])
+    
+    m.drawmeridians(meridians,
+                    labels=[0, 0, 0, 1],
+                    fmt='%.0f',  # Directly include degree symbol
+                    fontsize=6,
+                    color='grey',
+                    linewidth=0.5,
+                    dashes=[1, 1])
+    
+    # Add secondary grid lines (half spacing) without labels
+    if spacing > 2:  # Only add if primary spacing isn't already small
+        secondary_spacing = spacing / 2
+        secondary_parallels = np.arange(round_outward(south_bound, secondary_spacing),
+                                      round_outward(north_bound, secondary_spacing) + secondary_spacing,
+                                      secondary_spacing)
+        secondary_meridians = np.arange(round_outward(west_bound, secondary_spacing),
+                                       round_outward(east_bound, secondary_spacing) + secondary_spacing,
+                                       secondary_spacing)
+        
+        m.drawparallels(secondary_parallels,
+                        labels=[0, 0, 0, 0],
+                        color='lightgrey',
+                        linewidth=0.2,
+                        dashes=[1, 1])
+        
+        m.drawmeridians(secondary_meridians,
+                        labels=[0, 0, 0, 0],
+                        color='lightgrey',
+                        linewidth=0.2,
+                        dashes=[1, 1])
+
+"""
+def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound):
     # Calculate divisions
     parallels = np.linspace(south_bound, north_bound, 7)  # 6 divisions
     meridians = np.linspace(west_bound, east_bound, 6)    # 5 divisions
@@ -906,28 +1298,52 @@ def plot_map_grid(m, south_bound, north_bound, west_bound, east_bound):
                    color='lightgrey',
                    linewidth=0.2,
                    dashes=[1,1])
-    
+"""
+
+def plot_city_names(ax, m, short_name, city_file='names/pac_names.json'):
+
+    # Load city data
+    cities = pd.read_json(city_file)
+
+    # Filter for the selected country's cities
+    filtered_cities = cities[cities['country_code'] == short_name]
+
+    # If no cities found, return without plotting
+    if filtered_cities.empty:
+        return
+
+    # Transform coordinates
+    longitudes = filtered_cities['lon'].values
+    latitudes = filtered_cities['lat'].values
+    x_coords, y_coords = m(longitudes, latitudes)
+
+    # Plot city names
+    for x, y, name in zip(x_coords, y_coords, filtered_cities['name']):
+        ax.text(x + 0.3, y + 0.1, name,
+                fontsize=6, color='black',
+                ha='left', va='center')
+
 #####FUNCTIONS#####
 ##INIT##
 config = get_config_variables()
 
 #####PARAMETER#####
 region = 1
-layer_id = 26
-time= add_z_if_needed("2024-10-01T00:00:00Z")
+layer_id = 27
+#time= add_z_if_needed("2024-10-01T00:00:00Z")
 resolution = "l"
 #####PARAMETER#####
 
 layer_map_data = fetch_wms_layer_data(layer_id)
 
 #REMOVE DEMO
-#time = demo_time(layer_map_data)
+time = demo_time(layer_map_data)
 #REMOVE DEMO
 #####MAIN#####
 dap_url, dap_variable = get_dap_config(layer_map_data)
 title, dataset_text = get_title(layer_map_data,time)
 cmap_name, plot_type, min_color_plot, max_color_plot, steps, units, levels, discrete = get_plot_config(layer_map_data)
-west_bound, east_bound, south_bound, north_bound, country_name = getBBox(region)
+west_bound, east_bound, south_bound, north_bound, country_name, short_name = getBBox(region)
 eez_url = getCountryData(region)
 
 #MAPPING
@@ -946,7 +1362,7 @@ ax2.set_title(title, pad=10, fontsize=8)
 m = Basemap(projection='cyl', llcrnrlat=south_bound, urcrnrlat=north_bound, 
             llcrnrlon=west_bound, urcrnrlon=east_bound, resolution=resolution, ax=ax2)
 
-plot_map_grid(m, south_bound, north_bound, west_bound, east_bound)
+plot_map_grid(m, south_bound, north_bound, west_bound, east_bound,region)
 
 # Add colorbar to ax2
 ax2_pos = ax2.get_position()
@@ -1010,11 +1426,33 @@ elif plot_type == "levels_contourf":
     plot_levels_contour(ax2, ax_legend, lons, lats, chl_data,cmap_name, units=units,levels=levels,)
 
 elif plot_type == "climate":
-    lon, lat, data_extract = getfromDAP(dap_url, time, dap_variable,adjust_lon=True)
+    split_varib = dap_variable.split(",")
+    lon, lat, data_extract = getfromDAP(dap_url, time, split_varib[0],adjust_lon=True)
     cs, cbar = plot_climatology(dap_url,time,ax=ax2, ax_legend=ax_legend, lon=lon, lat=lat, data=data_extract,\
         min_color_plot=min_color_plot, max_color_plot=max_color_plot, steps=steps, cmap_name=cmap_name, units=units
     )
-
+elif plot_type == "currents":
+    lon, lat, uo = getfromDAP(dap_url, time, 'uo', adjust_lon=True)
+    _, _, vo = getfromDAP(dap_url, time, 'vo', adjust_lon=True)
+    pcm, quiv, cbar = plot_current_magnitude(
+        ax=ax2,
+        ax_legend=ax_legend,
+        lon=lon,
+        lat=lat,
+        uo=uo,
+        vo=vo,
+        region=region,
+        min_color_plot=min_color_plot,
+        max_color_plot=max_color_plot,
+        steps=0.1,
+        cmap_name=cmap_name,
+        units=units,
+        show_arrows=True,
+        arrow_scale=3,      # Replaces arrow_size (higher = bigger arrows)
+        density=50,          # More arrows than before (since we're scaling by magnitude)
+        arrow_color='white',  # Options: color string, or 'magnitude' to color by speed
+        min_speed=0.05       # Hide very weak currents (adjust based on your data range)
+    )
 
 #ADD LOGO AND FOOTER
 add_logo_and_footer(fig=fig, ax=ax, ax2=ax2, ax2_pos=ax2_pos, region=1, copyright_text=config.copyright_text,\
@@ -1028,4 +1466,7 @@ m.drawcoastlines(linewidth=0.3)
 m.fillcontinents(color='#A9A9A9', lake_color='white')
 m.drawcountries()
 
-plt.savefig('anuj3.png', bbox_inches='tight', pad_inches=0.1)
+plot_coastline_from_shapefile(ax2, 'shapefile/coastline/Pacific_Coastlines_openstreet_polygon.shp')
+plot_city_names(ax2,m,short_name)
+
+plt.savefig('anuj3.png', bbox_inches='tight', pad_inches=0.1,dpi=150)

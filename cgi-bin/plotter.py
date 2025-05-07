@@ -373,7 +373,7 @@ def fetch_wms_layer_data(api_url):
 
 ##########INPUT PARAMS#############
 region = 1
-layer_map = 8
+layer_map = 5
 time="2025-07-16T15:59:03Z"
 resolution = "h"
 coral = False

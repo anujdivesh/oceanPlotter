@@ -1,0 +1,45 @@
+[
+    {
+      "country_code": "FJI",
+      "name": "Suva",
+      "lat": -18.1416,
+      "lon": 178.4419
+    },
+    {
+      "country_code": "FJI",
+      "name": "Labasa",
+      "lat": -16.4333,
+      "lon": 179.3833
+    },
+    {
+      "country_code": "FJI",
+      "name": "Nadi",
+      "lat": -17.80309,
+      "lon": 177.41617
+    },
+    {
+      "country_code": "FJI",
+      "name": "Rotuma",
+      "lat": -12.47562862,
+      "lon": 177.037478
+    },
+    {
+      "country_code": "WSM",
+      "name": "Samoa",
+      "lat": -13.83333,
+      "lon": 188.23334
+    },
+    {
+      "country_code": "VUT",
+      "name": "Port Vila",
+      "lat": -17.73648,
+      "lon": 168.31366
+    },
+    {
+      "country_code": "VUT",
+      "name": "Luganville",
+      "lat": -15.51989,
+      "lon": 167.16235
+    }
+  ]
+  
