@@ -1071,7 +1071,7 @@ def plot_city_names(ax, m, short_name, city_file='names/pac_names.json'):
 
     # Plot city names
     for x, y, name in zip(x_coords, y_coords, filtered_cities['name']):
-        ax.text(x + 0.3, y + 0.1, name,
+        ax.text(x + 0.1, y + 0.1, name,
                 fontsize=6, color='black',
                 ha='left', va='center')
 
