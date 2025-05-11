@@ -5,7 +5,8 @@ import json
 document_types = [
     {"value": "All", "name": "All Types"},
     {"value": "tidecalendar", "name": "Tide Calendar"},
-    {"value": "waveclimate", "name": "Wave Climate Report"}
+    {"value": "waveclimate", "name": "Wave Climate Report"},
+    {"value": "geodetic", "name": "Geodetic Survey Report"}
 ]
 
 # Set the content type to JSON

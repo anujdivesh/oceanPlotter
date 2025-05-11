@@ -1501,5 +1501,106 @@
     "year": "2025",
     "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/tidecalendar/2025/Tokelau_Fakaofo_Calendar_2025.png",
     "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/tidecalendar/2025/Tokelau_Fakaofo_Calendar_2025.pdf"
+  },
+  {
+    "id": 167,
+    "title": "Cook Islands - Survey Report",
+    "category": "Cook_Islands",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/CK_PSLGMLevelling&GNSSMonitoringSurveyReports_May2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/CK_PSLGMLevelling&GNSSMonitoringSurveyReports_May2019.pdf"
+  },
+  {
+    "id": 168,
+    "title": "Fiji - Survey Report",
+    "category": "Fiji",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/FJ_PSLGMLevelling&GNSSMonitoringSurveyReports_Jan2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/FJ_PSLGMLevelling&GNSSMonitoringSurveyReports_Jan2019.pdf"
+  },
+  {
+    "id": 169,
+    "title": "FSM - Survey Report",
+    "category": "FSM",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/FM_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2018.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/FM_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2018.pdf"
+  },
+  {
+    "id": 170,
+    "title": "MHL - Survey Report",
+    "category": "Marshall_Islands",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/MH_PSLGMLevelling&GNSSMonitoringSurveyReports_Feb2020.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/MH_PSLGMLevelling&GNSSMonitoringSurveyReports_Feb2020.pdf"
+  },
+  {
+    "id": 171,
+    "title": "NRU - Survey Report",
+    "category": "Nauru",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/NR_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/NR_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2019.pdf"
+  },
+  {
+    "id": 172,
+    "title": "PNG - Survey Report",
+    "category": "PNG",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/PG_PSLGMLevelling&GNSSMonitoringSurveyReports_Mar2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/PG_PSLGMLevelling&GNSSMonitoringSurveyReports_Mar2019.pdf"
+  },
+  {
+    "id": 173,
+    "title": "SB - Survey Report",
+    "category": "Solomon_Islands",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/SB_PSLGMLevelling&GNSSMonitoringSurveyReports_Aug2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/SB_PSLGMLevelling&GNSSMonitoringSurveyReports_Aug2019.pdf"
+  },
+  {
+    "id": 174,
+    "title": "TO - Survey Report",
+    "category": "Tonga",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/TO_PSLGMLevelling&GNSSMonitoringSurveyReports_April2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/TO_PSLGMLevelling&GNSSMonitoringSurveyReports_April2019.pdf"
+  },
+  {
+    "id": 175,
+    "title": "TV - Survey Report",
+    "category": "Tuvalu",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/TV_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/TV_PSLGMLevelling&GNSSMonitoringSurveyReports_Oct2019.pdf"
+  },
+  {
+    "id": 176,
+    "title": "VU - Survey Report",
+    "category": "Vanuatu",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/VU_PSLGMLevelling&GNSSMonitoringSurveyReports_Mar2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/VU_PSLGMLevelling&GNSSMonitoringSurveyReports_Mar2019.pdf"
+  },
+  {
+    "id": 177,
+    "title": "WS - Survey Report",
+    "category": "Samoa",
+    "document": "geodetic",
+    "year": "2019",
+    "image": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/WS_PSLGMLevelling&GNSSMonitoringSurveyReports_July2019.png",
+    "pdf": "https://ocean-cgi.spc.int/cgi-bin/library/serve_doc.py?file=pdfs/geodetic/WS_PSLGMLevelling&GNSSMonitoringSurveyReports_July2019.pdf"
   }
+
+
   ]
