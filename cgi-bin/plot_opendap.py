@@ -1083,7 +1083,7 @@ config = get_config_variables()
 region = region_api
 layer_id = layer_map_api
 time= add_z_if_needed(time_api)
-resolution = "f"
+resolution = "h"
 #####PARAMETER#####
 
 #LOAD LAYER WEB MAP
